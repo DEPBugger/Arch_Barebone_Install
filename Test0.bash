@@ -29,10 +29,10 @@ pacman -Syy reflector --noconfirm
 reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 pacstrap /mnt base base-devel networkmanager net-tools
 genfstab -U -p /mnt >> /mnt/etc/fstab
-arch-chroot /mnt ./Test1.bash
+cp Test1.bash /mnt
+arch-chroot /mnt bash Test1.bash
 ############-----Ahora ejecutará el siguiente script-----############
 ############-----Todo lo que hay a continuación se ejecuta después de que Test1.bash haya finalizado-----############
+rm /mnt/Test1.bash
+# Crear script que se autoejecute al iniciar el sistema una única vez y lance el script Test2.bash
 poweroff
-# Hay que ejecutar en el siguiente inicio
-# systemctl start NetworkManager.service
-# systemctl enable NetworkManager.service
