@@ -1,7 +1,7 @@
 Finish basic install scripts: DONE
 Add prompt and configuration about time zone and keyboard layouts: not done
 Create a goodlooking README.md: not done
-Add prompts about password and username on installation start: not done
+Add prompts about password and username on installation start (username by default is vbox): not done
 Add prompt that ask if its being installed on VirtualBox in order to install guest addition (pacman -S virtualbox-guest-modules-arch): not done
 Add a way to check if commands are executed correctly on scripts: not done
 Comment scripts in order that anyone could easily edit them: not done
