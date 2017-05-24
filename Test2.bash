@@ -43,10 +43,8 @@ echo "Sistema gráfico básico instalado"
 # Editar vbox y que use el nombre de usuario creado anteriormente
 # Autointroducir la contraseña que se introdujo antes para el usuario
 echo "Ejecutando su vbox instalar yaourt, Xfce y lxdm y sus extras"
-su vbox << EOF
-yaourt -S --noconfirm --needed xfce4 xfce4-goodies lxdm lxdm-themes
+su vbox -c 'yaourt -S --noconfirm --needed xfce4 xfce4-goodies lxdm lxdm-themes'
 exit
-EOF
 echo "yaourt Xfce y lxdm y sus extras instalados"
 ls
 rm $0
