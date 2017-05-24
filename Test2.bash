@@ -13,7 +13,7 @@ locale-gen
 echo "KEYMAP=es" > /etc/vconsole.conf
 mkinitcpio -p linux
 # Añadir opción para editar el /dev/sda1 y la /dev/sda y 1 de después
-pacman -S --noconfirm --needed git zsh refind-efi && refind-install --usedefault /dev/sda1 --alldrivers && efibootmgr -c -d /dev/sda -p 1 -L rEFInd -l /EFI/BOOT/bootx64.efi
+pacman -S --noconfirm --needed refind-efi && refind-install --usedefault /dev/sda1 --alldrivers && efibootmgr -c -d /dev/sda -p 1 -L rEFInd -l /EFI/BOOT/bootx64.efi
 echo "rEFInd instalado y habilitado para el próximo arranque"
 # Editar vbox y poner opción de que el usuario escriba su nombre
 echo "Creando usuario"
@@ -42,8 +42,8 @@ echo "Sistema gráfico básico instalado"
 # Preguntar si desea instalar Xfce4 y lxdm (añadir más DE en el futuro)
 # Editar vbox y que use el nombre de usuario creado anteriormente
 # Autointroducir la contraseña que se introdujo antes para el usuario
-echo "Ejecutando su vbox instalar yaourt, Xfce y lxdm y sus extras"
-su vbox -c 'yaourt -S --noconfirm --needed xdg-user-dirs xfce4 xfce4-goodies lxdm lxdm-themes && xdg-user-dirs-update'
+echo "Ejecutando su vbox instalar yaourt, Xfce y lxdm y varios extras"
+su vbox -c 'yaourt -S --noconfirm --needed xdg-user-dirs xfce4 xfce4-goodies lxdm lxdm-themes zsh git wget curl && xdg-user-dirs-update'
 exit
 echo "yaourt Xfce y lxdm y sus extras instalados"
 ls
