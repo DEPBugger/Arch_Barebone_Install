@@ -13,7 +13,7 @@ locale-gen
 echo "KEYMAP=es" > /etc/vconsole.conf
 mkinitcpio -p linux
 # Añadir opción para editar el /dev/sda1 y la /dev/sda y 1 de después
-pacman -S --noconfirm --needed zsh refind-efi && refind-install --usedefault /dev/sda1 --alldrivers && efibootmgr -c -d /dev/sda -p 1 -L rEFInd -l /EFI/BOOT/bootx64.efi
+pacman -S --noconfirm --needed git zsh refind-efi && refind-install --usedefault /dev/sda1 --alldrivers && efibootmgr -c -d /dev/sda -p 1 -L rEFInd -l /EFI/BOOT/bootx64.efi
 echo "rEFInd instalado y habilitado para el próximo arranque"
 # Editar vbox y poner opción de que el usuario escriba su nombre
 echo "Creando usuario"
