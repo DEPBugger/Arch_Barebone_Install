@@ -29,8 +29,8 @@ pacman -Syy reflector --noconfirm
 reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 pacstrap /mnt base base-devel networkmanager net-tools
 genfstab -U -p /mnt >> /mnt/etc/fstab
-cp Test1.bash /mnt
-arch-chroot /mnt bash Test1.bash
+cp Test1.bash /mnt/tmp
+arch-chroot /mnt bash /tmp/Test1.bash
 ############-----Ahora ejecutará el siguiente script-----############
 ############-----Todo lo que hay a continuación se ejecuta después de que Test1.bash haya finalizado-----############
 # Crear script que se autoejecute al iniciar el sistema una única vez y lance el script Test2.bash
