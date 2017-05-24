@@ -6,5 +6,6 @@ Español:
 * Nota: Ten en cuenta que para poner el teclado en español debes ejecutar `loadkeys es` antes de empezar la instalación.
 
 
+
 English:
 - Once Arch Linux live (UEFI mode) had booted up just run this command in order to download the first script and start the install process: `wget git.io/vHmpr && bash vHmpr`
