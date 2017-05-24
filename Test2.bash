@@ -37,7 +37,7 @@ echo "Añadido repositorio para instalar yaourt (se eliminará más tarde)"
 pacman -Syy --noconfirm --needed yaourt xorg xorg-apps mesa mesa-demos xf86-video-vesa xf86-video-intel xterm firefox terminator geany xf86-video-ati
 echo "Sistema gráfico básico instalado"
 # Preguntar si está instalando en VirtualBox
-pacman -S virtualbox-guest-modules-arch --noconfirm
+# pacman -S virtualbox-guest-modules-arch --noconfirm
 # Eliminar el repositorio [archlinuxfr] de pacman.conf
 # Preguntar si desea instalar Xfce4 y lxdm (añadir más DE en el futuro)
 # Editar vbox y que use el nombre de usuario creado anteriormente
