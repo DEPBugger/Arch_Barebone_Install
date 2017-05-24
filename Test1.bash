@@ -21,16 +21,20 @@ mkfs.ext4 -L "Arch Linux" /dev/sda2
 # mkswap /dev/sda4
 # swapon /dev/sda4
 # mkdir /mnt/home
-mkdir -p /mnt/boot/efi
 mount /dev/sda2 /mnt
+mkdir -p /mnt/boot/efi
 mount /dev/sda1 /mnt/boot/efi
+lsblk
+# ¿Está correcto?
 # mount /dev/sda3 /mnt/home
+echo '########---Instalando reflector y actualizando la mirrorlist del live---########'
 pacman -Syy reflector --noconfirm
 reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 pacstrap /mnt base base-devel networkmanager net-tools
 genfstab -U -p /mnt >> /mnt/etc/fstab
-cp Test2.bash /mnt/tmp
-arch-chroot /mnt bash /tmp/Test2.bash
+cp ~/Arch_Barebone_Install/Test2.bash /mnt
+ls /mnt/tmp
+arch-chroot /mnt bash Test2.bash
 ############-----Ahora ejecutará el siguiente script-----############
 ############-----Todo lo que hay a continuación se ejecuta después de que Test2.bash haya finalizado-----############
 # Crear script que se autoejecute al iniciar el sistema una única vez y lance el script Test3.bash

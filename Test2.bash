@@ -29,7 +29,11 @@ pacman -Syy --noconfirm --needed yaourt xorg xorg-apps mesa mesa-demos xf86-vide
 # Eliminar el repositorio [archlinuxfr] de pacman.conf
 # Preguntar si desea instalar Xfce4 y lxdm (añadir más DE en el futuro)
 # Editar vbox y que use el nombre de usuario creado anteriormente
-su vbox
+su vbox << EOF
 yaourt -S --noconfirm --needed xfce4 xfce4-goodies lxdm lxdm-themes
 exit
+EOF
+ls
+rm $0
+ls
 exit
