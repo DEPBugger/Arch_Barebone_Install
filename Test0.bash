@@ -10,6 +10,8 @@ ping -c 3 kernel.org
 lsblk
 # ¿Continuar?
 echo "Ahora deberás editar el particionado de tu disco"
+# echo "Pulsa enter cuando estés list@"
+# Añadir espera tras el echo anterior
 # Añadir opción para eliminar la tabla de particiones
 cfdisk /dev/sda
 lsblk
