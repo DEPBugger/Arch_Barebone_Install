@@ -1,35 +1,37 @@
 #!/bin/bash
-echo ArchLinux > /etc/hostname
-echo "Introduce la contraseña de la cuenta root, pulsa enter e introdúcela de nuevo"
-passwd
-ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime
-sed -i 's/#es_ES.UTF-8 UTF-8/es_ES.UTF-8 UTF-8/' /etc/locale.gen
-echo "LANG=es_ES.UTF-8" > /etc/locale.conf
-locale-gen
-echo "KEYMAP=es" > /etc/vconsole.conf
-mkinitcpio -p linux
-# Añadir opción para editar el /dev/sda1 y la /dev/sda y 1 de después
-pacman -S --noconfirm --needed zsh refind-efi && refind-install --usedefault /dev/sda1 --alldrivers && efibootmgr -c -d /dev/sda -p 1 -L rEFInd -l /EFI/BOOT/bootx64.efi
-# Editar vbox y poner opción de que el usuario escriba su nombre
-echo "Creando usuario"
-useradd -m -g users -G audio,lp,optical,storage,video,wheel,games,power,scanner -s /bin/bash vbox
-# Editar vbox y poner opción de que el usuario escriba su nombre
-echo "Introduzca la contraseña para su usuario"
-passwd vbox
-sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
-sed -i 's/#Color/Color\nILoveCandy/' /etc/pacman.conf
-sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
-echo "
-[archlinuxfr]
-SigLevel = Never
-Server = http://repo.archlinux.fr/$"arch"" >> /etc/pacman.conf
-pacman -Syy --noconfirm --needed yaourt xorg xorg-apps mesa mesa-demos xf86-video-vesa xf86-video-intel xterm firefox terminator geany xf86-video-ati
-# Preguntar si está instalando en VirtualBox
-# pacman -S virtualbox-guest-modules-arch --noconfirm
-# Eliminar el repositorio [archlinuxfr] de pacman.conf
-# Preguntar si desea instalar Xfce4 y lxdm (añadir más DE en el futuro)
-# Editar vbox y que use el nombre de usuario creado anteriormente
-su vbox
-yaourt -S --noconfirm --needed xfce4 xfce4-goodies lxdm lxdm-themes
-exit
-exit
+# Este script es solo una prueba, y aunque no lo fuera lo usas bajo tu propio riesgo. No lo uses en tu ordenador real, pruébalo en una máquina virtual.
+# Pensado para computadoras de 64 bits
+echo "##################--------Test--------##################"
+# ¿Continuar?
+dhcpcd
+ping -c 3 kernel.org
+lsblk
+# ¿Continuar?
+echo "Ahora deberás editar el particionado de tu disco"
+# echo "Pulsa enter cuando estés list@"
+# Añadir espera tras el echo anterior
+# Añadir opción para eliminar la tabla de particiones
+cfdisk /dev/sda
+lsblk
+# ¿Es correcto?
+# Añadir opción para editar el /dev/sdXY de los mkfs
+mkfs.vfat -F32 /dev/sda1
+mkfs.ext4 -L "Arch Linux" /dev/sda2
+# mkfs.ext4 -L "home" /dev/sda3
+# mkswap /dev/sda4
+# swapon /dev/sda4
+# mkdir /mnt/home
+mkdir -p /mnt/boot/efi
+mount /dev/sda2 /mnt
+mount /dev/sda1 /mnt/boot/efi
+# mount /dev/sda3 /mnt/home
+pacman -Syy reflector --noconfirm
+reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+pacstrap /mnt base base-devel networkmanager net-tools
+genfstab -U -p /mnt >> /mnt/etc/fstab
+cp Test2.bash /mnt/tmp
+arch-chroot /mnt bash /tmp/Test2.bash
+############-----Ahora ejecutará el siguiente script-----############
+############-----Todo lo que hay a continuación se ejecuta después de que Test2.bash haya finalizado-----############
+# Crear script que se autoejecute al iniciar el sistema una única vez y lance el script Test3.bash
+poweroff
