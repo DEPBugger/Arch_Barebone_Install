@@ -33,6 +33,5 @@ cp Test1.bash /mnt
 arch-chroot /mnt bash Test1.bash
 ############-----Ahora ejecutará el siguiente script-----############
 ############-----Todo lo que hay a continuación se ejecuta después de que Test1.bash haya finalizado-----############
-rm /mnt/Test1.bash
 # Crear script que se autoejecute al iniciar el sistema una única vez y lance el script Test2.bash
 poweroff

@@ -32,4 +32,5 @@ pacman -Syy --noconfirm --needed yaourt xorg xorg-apps mesa mesa-demos xf86-vide
 su vbox
 yaourt -S --noconfirm --needed xfce4 xfce4-goodies lxdm lxdm-themes
 exit
+rm $0
 exit
