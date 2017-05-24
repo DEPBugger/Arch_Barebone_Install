@@ -1,11 +1,13 @@
 Finish basic install scripts: DONE
-Add prompt and configuration about time zone and keyboard layouts: not done
-Create a goodlooking README.md: not done
-Add prompts about password and username on installation start (username by default is vbox): not done
-Add prompt that ask if its being installed on VirtualBox in order to install guest addition (pacman -S virtualbox-guest-modules-arch): not done
-Add a way to check if commands are executed correctly on scripts: not done
-Comment scripts in order that anyone could easily edit them: not done
-Make the hole repository (README.md and scripts' comments) bilingual. English and Spanish translations: not done
-Add support for legacy BIOS installation: not done
+Add prompt and configuration about time zone and keyboard layouts: not done yet
+Create a goodlooking README.md: not done yet
+Add prompts about password and username on installation start (username by default is vbox): not done yet
+Add prompt that ask if its being installed on VirtualBox in order to install guest addition (pacman -S virtualbox-guest-modules-arch): not done yet
+Add prompt that ask about which desktop environment do you wanna install: not done yet
+Add prompt that ask abour which session manager do you wanna install: not done yet
+Add a way to check if commands are executed correctly on scripts: not done yet
+Comment scripts in order that anyone could easily edit them: not done yet
+Make the hole repository (README.md and scripts' comments) bilingual. English and Spanish translations: not done yet
+Add support for legacy BIOS installation: not done yet
 
 Please feel free to collaborate on this repo. Thanks for reading.
