@@ -67,22 +67,54 @@ function ConfRed() {
 }
 
 function ConfDisk() {
-	# Tienes X discos duros elige donde instalar (si tiene solo 1 continuar)
-	# Plantear un sistema para elegir cantidad de particiones y si separar /boot /home y / (en su defecto particionado manual)
-	function HelpDisk() {
-
-	}
-
-	function ManualDisk() {
-
-	}
 	echo "Comprobando tus Discos Duros y Particiones en ellos."
 	sleep 1s
 	echo "Comprobando tus Discos Duros y Particiones en ellos.."
 	sleep 1s
 	echo "Comprobando tus Discos Duros y Particiones en ellos..."
 	sleep 1s
+
 	lsblk
+
+	#function ToFormat(efi raiz boot home) {
+		#Comprobar entradas, descartar vacíos y formatear
+		#Los vacíos se descartan
+
+		#tomar variables de entrada
+	#}
+
+	function HelpDisk() { #Función para particionmiento guiado
+		#Preguntar paso a paso
+
+		# echo "Crear partición boot [s/n]"
+		# echo "Crear partición home [s/n]"
+
+		# echo "Introduce tamaño para EFI (recomendado 100mb)
+		# echo "Introduce tamaño para raíz"
+		# echo "Introduce tamaño para boot"
+		# echo "Introduce tamaño para home"
+	}
+
+	function ManualDisk() { #Función para particionamiento manual
+		# Tienes X discos duros elige donde instalar (si tiene solo 1 continuar)
+		# if [ 1HDD ]; then
+		# 	cfdisk /dev/sda
+		# else
+				#Mostrar discos duros
+				# echo "Introduce el disco duro"
+				# echo "El disco elegido es: XXXX???"
+				# echo "Pulsa una tecla para continuar..."
+				# read input
+				# cfdisk HDDELEGIDO
+
+				# echo "introduce efi"
+				# echo "introduce raíz"
+				# echo "introduce boot (dejar vacio si no hay)"
+				# echo "introduce home (dejar vacio si no hay)"
+
+				#ToFormat(efi raiz boot home)
+		#fi
+	}
 
 	while true #Pregunta si asistir en el particionado o entrar en modo manual
 		do
@@ -98,18 +130,6 @@ function ConfDisk() {
 			esac
 		done
 
-	#Pedir introducir disco o crear bucle con cada uno de ellos para elegirlo
-
-	echo "El disco elegido es: XXXX???"
-	echo ""
-	echo "Ahora deberás editar el particionado de tu disco"
-	echo "Pulsa una tecla para continuar..."
-	read input #Se añade esta entrada para hacer pausa y que el usuario vea los discos
-
-	# Añadir opción para eliminar la tabla de particiones
-	cfdisk /dev/sda
-	lsblk
-	# ¿Es correcto?
 	# Añadir opción para editar el /dev/sdXY de los mkfs
 	# mkfs.vfat -F32 /dev/sda1
 	# mkfs.ext4 -L "Arch Linux" /dev/sda2
@@ -120,7 +140,7 @@ function ConfDisk() {
 	# mount /dev/sda2 /mnt
 	# mkdir -p /mnt/boot/efi
 	# mount /dev/sda1 /mnt/boot/efi
-	lsblk
+	# lsblk
 	# ¿Está correcto?
 	# mount /dev/sda3 /mnt/home
 }
