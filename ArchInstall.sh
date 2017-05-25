@@ -98,15 +98,31 @@ function ConfDisk() {
 }
 
 function PreInstall() {
+	echo '########---Instalando reflector y actualizando la mirrorlist del live---########'
+	pacman -Syy reflector --noconfirm
+	reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+	pacstrap /mnt base base-devel networkmanager net-tools
+	genfstab -U -p /mnt >> /mnt/etc/fstab
 
+
+	#arch-chroot /mnt bash Test2.bash
 }
 
 function ToInstall() {
+	#Comprobar que está bien montado
 
+	#Instalar
+	#cp ~/Arch_Barebone_Install/Test2.bash /mnt
+
+	#Comprobar que la copia se ha realizado correctamente
+	ls /mnt/tmp
 }
 
 function PostInstall() {
-
+	echo "Se ha terminado de instalar, ¿desea apagar el equipo?"
+	#Preguntar si o no [s/n]
+	#En caso de si apagar:
+	#poweroff
 }
 
 #LLamada a las funciones
