@@ -70,6 +70,7 @@ function ConfDisk() {
 	# Plantear si esto es interactivo por ejemplo:
 	# Tienes X discos duros elige donde instalar (si tiene solo 1 continuar)
 	# Plantear un sistema para elegir cantidad de particiones y si separar /boot /home y / (en su defecto particionado manual)
+
 	echo "Comprobando tus Discos Duros y Particiones en ellos."
 	sleep 1s
 	echo "Comprobando tus Discos Duros y Particiones en ellos.."
@@ -77,6 +78,10 @@ function ConfDisk() {
 	echo "Comprobando tus Discos Duros y Particiones en ellos..."
 	sleep 1s
 	lsblk
+
+	#Preguntar si asistir en el particionado o entrar en modo manual
+	echo "1) Particionamiento Guiado"
+	echo "2) Particionamiento manual"
 
 	#Pedir introducir disco o crear bucle con cada uno de ellos para elegirlo
 
