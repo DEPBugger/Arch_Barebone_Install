@@ -1,0 +1,4 @@
+###### LIVE INSTALADOR #####
+Usuario --> root
+Hostname --> archiso
+>root@archiso
