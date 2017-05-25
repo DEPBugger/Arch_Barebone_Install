@@ -8,6 +8,24 @@ LOG="/tmp/ArchInstall"
 function help() {
 	#Añadir ayuda en esta función
 	echo "Advertencia e instrucciones a continuación"
+	echo "Este instalador realizará:"
+	echo "1) ....."
+	echo "2) ....."
+	echo "3) ....."
+	echo "4) ....."
+	echo "5) ....."
+	echo "6) ....."
+	echo ""
+	echo "Desea continuar Y/N"
+
+	read input
+	while true
+		do
+			case $input in
+				Y|y) break;;
+				N|n) exit 0;;
+			esac
+		done
 }
 
 function preconfig() {
