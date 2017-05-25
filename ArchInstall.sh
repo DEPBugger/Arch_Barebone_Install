@@ -5,6 +5,11 @@ USER=`whoami`
 DEBUG="true"
 LOG="/tmp/ArchInstall"
 
+function help() {
+	#Añadir ayuda en esta función
+	echo "Advertencia e instrucciones a continuación"
+}
+
 function preconfig() {
 	touch $LOG #Crea el archivo donde se registrará el LOG
 
