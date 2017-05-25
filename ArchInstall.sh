@@ -58,6 +58,17 @@ function ConfRed() {
 }
 
 function ConfDisk() {
+	# Mostrar discos y particiones actuales
+	# Planetear si esto es interactivo por ejemplo:
+	# Tienes X discos duros elige donde instalar (si tiene solo 1 continuar)
+	# Plantear un sistema para elegir cantidad de particiones y si separar /boot /home y /
+	echo "Comprobando tus Discos Duros y Particiones en ellos."
+	sleep 1s
+	echo "Comprobando tus Discos Duros y Particiones en ellos.."
+	sleep 1s
+	echo "Comprobando tus Discos Duros y Particiones en ellos..."
+	sleep 1s
+	lsblk
 
 }
 
