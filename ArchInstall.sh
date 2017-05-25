@@ -5,7 +5,7 @@ USER=`whoami`
 DEBUG="true"
 LOG="/tmp/ArchInstall"
 
-function help() {
+function InfoHelp() {
 	#Añadir ayuda en esta función
 	echo "Advertencia e instrucciones a continuación"
 	echo "Este instalador realizará:"
@@ -49,6 +49,7 @@ function preconfig() {
 }
 
 #LLamada a las funciones
+InfoHelp
 preconfig
 
 exit 0
