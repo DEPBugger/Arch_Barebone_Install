@@ -97,6 +97,17 @@ function ConfDisk() {
 	# mount /dev/sda3 /mnt/home
 }
 
+function PreInstall() {
+
+}
+
+function ToInstall() {
+
+}
+
+function PostInstall() {
+
+}
 
 #LLamada a las funciones
 InfoHelp
