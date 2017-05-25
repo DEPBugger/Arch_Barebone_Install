@@ -70,6 +70,31 @@ function ConfDisk() {
 	sleep 1s
 	lsblk
 
+	#Pedir introducir disco o crear bucle con cada uno de ellos para elegirlo
+
+	echo "El disco elegido es: XXXX???"
+	echo ""
+	echo "Ahora deberás editar el particionado de tu disco"
+	echo "Pulsa una tecla para continuar..."
+	read input #Se añade esta entrada para hacer pausa y que el usuario vea los discos
+
+	# Añadir opción para eliminar la tabla de particiones
+	cfdisk /dev/sda
+	lsblk
+	# ¿Es correcto?
+	# Añadir opción para editar el /dev/sdXY de los mkfs
+	mkfs.vfat -F32 /dev/sda1
+	mkfs.ext4 -L "Arch Linux" /dev/sda2
+	# mkfs.ext4 -L "home" /dev/sda3
+	# mkswap /dev/sda4
+	# swapon /dev/sda4
+	# mkdir /mnt/home
+	mount /dev/sda2 /mnt
+	mkdir -p /mnt/boot/efi
+	mount /dev/sda1 /mnt/boot/efi
+	lsblk
+	# ¿Está correcto?
+	# mount /dev/sda3 /mnt/home
 }
 
 
