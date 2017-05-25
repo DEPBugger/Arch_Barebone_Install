@@ -130,5 +130,6 @@ InfoHelp
 preconfig
 ConfRed
 ConfDisk
+PreInstall
 
 exit 0
