@@ -60,5 +60,6 @@ function ConfRed() {
 #LLamada a las funciones
 InfoHelp
 preconfig
+ConfRed
 
 exit 0
