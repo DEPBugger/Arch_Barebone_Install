@@ -15,4 +15,9 @@ function preconfig() {
 	loadkeys es && echo "Teclado del entorno live configurado a español" >> $LOGDIR #Establece teclado en español
 }
 
+
+
+#LLamada a las funciones
+preconfig
+
 exit 0
