@@ -7,7 +7,6 @@ LOG="/tmp/ArchInstall"
 
 #Function that gives information about the installation process
 function InfoHelp() {
-	echo "Advertencia e instrucciones a continuación"
 	echo "This installer script will takes the following steps, please write them down so that you can easily follow the installation process"
 	echo "1) ....."
 	echo "2) ....."
