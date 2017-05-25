@@ -83,15 +83,15 @@ function ConfDisk() {
 	lsblk
 	# ¿Es correcto?
 	# Añadir opción para editar el /dev/sdXY de los mkfs
-	mkfs.vfat -F32 /dev/sda1
-	mkfs.ext4 -L "Arch Linux" /dev/sda2
+	# mkfs.vfat -F32 /dev/sda1
+	# mkfs.ext4 -L "Arch Linux" /dev/sda2
 	# mkfs.ext4 -L "home" /dev/sda3
 	# mkswap /dev/sda4
 	# swapon /dev/sda4
 	# mkdir /mnt/home
-	mount /dev/sda2 /mnt
-	mkdir -p /mnt/boot/efi
-	mount /dev/sda1 /mnt/boot/efi
+	# mount /dev/sda2 /mnt
+	# mkdir -p /mnt/boot/efi
+	# mount /dev/sda1 /mnt/boot/efi
 	lsblk
 	# ¿Está correcto?
 	# mount /dev/sda3 /mnt/home
