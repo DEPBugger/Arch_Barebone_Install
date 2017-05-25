@@ -24,6 +24,7 @@ function InfoHelp() {
 			case $input in
 				Y|y) break;;
 				N|n) exit 0;;
+				*) echo "Opción no válida, introduce Y/N";;
 			esac
 		done
 }
