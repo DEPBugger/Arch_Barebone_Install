@@ -1,5 +1,4 @@
 # Arch_Barebone_Install
-Just some scripts that help me installing Arch Linux
 
 Español:
 - Una vez que haya iniciado el live de Arch Linux (en modo UEFI) simplemente ejecuta este comando para que se descargue el primer script y comience la instalación: `wget git.io/vHmpr && bash vHmpr`
