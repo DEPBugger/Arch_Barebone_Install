@@ -57,6 +57,11 @@ function ConfRed() {
 	echo "Hay conexión de red" >> $LOG
 }
 
+function ConfDisk() {
+
+}
+
+
 #LLamada a las funciones
 InfoHelp
 preconfig
