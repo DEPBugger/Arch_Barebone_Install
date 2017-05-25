@@ -49,6 +49,14 @@ function preconfig() {
 	# echo "git instalado"
 }
 
+function ConfRed() {
+	dhcpcd 2>> $LOG && echo "El comando dhcpcd ha funcionado correctamente" >> $LOG
+
+	# Comprobar que hay conexión
+	# ping -c 3 kernel.org
+	echo "Hay conexión de red" >> $LOG
+}
+
 #LLamada a las funciones
 InfoHelp
 preconfig
