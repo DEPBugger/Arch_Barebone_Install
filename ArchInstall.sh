@@ -18,9 +18,10 @@ function InfoHelp() {
 	echo "From now on keep in mind that when you see [y/n] you must answer y (affirmative answer) or n (negative answer)"
 	echo "Continue? [y/n]"
 
-	read input
 	while true
 		do
+			read input
+
 			case $input in
 				Y|y) break;;
 				N|n) exit 0;;
@@ -66,11 +67,15 @@ function ConfRed() {
 }
 
 function ConfDisk() {
-	# Mostrar discos y particiones actuales
-	# Plantear si esto es interactivo por ejemplo:
 	# Tienes X discos duros elige donde instalar (si tiene solo 1 continuar)
 	# Plantear un sistema para elegir cantidad de particiones y si separar /boot /home y / (en su defecto particionado manual)
+	function HelpDisk() {
 
+	}
+
+	function ManualDisk() {
+
+	}
 	echo "Comprobando tus Discos Duros y Particiones en ellos."
 	sleep 1s
 	echo "Comprobando tus Discos Duros y Particiones en ellos.."
@@ -79,9 +84,19 @@ function ConfDisk() {
 	sleep 1s
 	lsblk
 
-	#Preguntar si asistir en el particionado o entrar en modo manual
-	echo "1) Particionamiento Guiado"
-	echo "2) Particionamiento manual"
+	while true #Pregunta si asistir en el particionado o entrar en modo manual
+		do
+			echo "1) Particionamiento Guiado"
+			echo "2) Particionamiento manual"
+
+			read input
+
+			case $input in
+				1) HelpDisk;;
+				2) ManualDisk;;
+				*) echo "Opción incorrecta, introduce 1 o 2";;
+			esac
+		done
 
 	#Pedir introducir disco o crear bucle con cada uno de ellos para elegirlo
 
