@@ -37,5 +37,4 @@ ls /mnt/tmp
 arch-chroot /mnt bash Test2.bash
 ############-----Ahora ejecutará el siguiente script-----############
 ############-----Todo lo que hay a continuación se ejecuta después de que Test2.bash haya finalizado-----############
-# Crear script que se autoejecute al iniciar el sistema una única vez y lance el script Test3.bash
 poweroff
