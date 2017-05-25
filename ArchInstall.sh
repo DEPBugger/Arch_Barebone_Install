@@ -113,5 +113,6 @@ function PostInstall() {
 InfoHelp
 preconfig
 ConfRed
+ConfDisk
 
 exit 0
