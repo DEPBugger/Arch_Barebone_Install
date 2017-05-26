@@ -90,20 +90,14 @@ function PreConfig() {
 
 	mount -o remount,size=2G /run/archiso/cowspace 2>> $LOG && echo "/run/archiso/cowspace ampliada a 2GB" >> $LOG
 	echo "/run/archiso/cowspace ampliada a 2GB"
-
-	# Activar red por cliente dhcp
-	echo "Activando Cliente DHCP" && echo "Activando Cliente DHCP" >> $LOG
-	dhcpcd 2>> $LOG
-
-	#Comprobar conexión a internet, mirar que en 1 de 3 ping haya obtenido respuesta de www.google.es
 }
 
 function ConfRed() {
+	echo "Activando Cliente DHCP" && echo "Activando Cliente DHCP" >> $LOG
 	dhcpcd 2>> $LOG && echo "El comando dhcpcd ha funcionado correctamente" >> $LOG
 
-	# Comprobar que hay conexión
-	# ping -c 3 kernel.org
-	echo "Hay conexión de red" >> $LOG
+	# Comprobar conexión a internet, mirar que en 1 de 3 ping haya obtenido respuesta de www.kernel.org
+	# echo "Hay conexión de red" >> $LOG
 }
 
 function ConfDisk() {
