@@ -49,6 +49,7 @@ function PreConfig() {
 			clear
 			echo "Introduce el idioma de teclado"
 			# https://wiki.archlinux.org/index.php/Keyboard_configuration_in_console
+			##### Añadir Alemán, francés, inglés de USA y de UK y de España
 			echo "es Para español"
 			echo "en Para inglés"
 
@@ -62,7 +63,11 @@ function PreConfig() {
 					read input;;
 			esac
 		done
-		loadkeys $LANGUAGE 2>> $LOG && echo "Teclado del entorno live configurado a $LANGUAGE" >> $LOG #Establece teclado en español
+
+		# https://wiki.archlinux.org/index.php/Keyboard_configuration_in_console#Keymap_codes
+		##### Filtrar códigos disponibles para loadkeys --> `find /usr/share/kbd/keymaps/ -type f`
+		# Establece teclado en el idioma elegido
+		loadkeys $LANGUAGE 2>> $LOG && echo "Teclado del entorno live configurado a $LANGUAGE" >> $LOG
 		echo ""
 		echo "El idioma de teclado actual es el siguiente:"
 		localectl status #Muestra distribución actual del teclado
@@ -83,15 +88,7 @@ function PreConfig() {
 		esac
 	done
 
-##### Comando `locacectl status` para ver la distribución actual del teclado, la salida te la dejo en imgur por si quieres mostrar una parte de la salida y preguntar si es correcto tras elegir la distribución de teclado: http://i.imgur.com/JKrqIu7.png
-##### Comando para cargar la distribuciones del teclado `loadkeys X` donde X es el código de la distribución, aquí tienes la información necesaria: https://wiki.archlinux.org/index.php/Keyboard_configuration_in_console#Keymap_codes
-##### Para ver una lista de todos los códigos disponibles ejecutar `find /usr/share/kbd/keymaps/ -type f`, su salida (el código que debes poner donde la X es el nombre del archivo sin la extension .map.gz, por ejemplo para ponerlo en español es `loadkeys es` porque el nombre del archivo es es.map.gz): https://bpaste.net/show/c9e19c8e273d
-##### Con añadir las opciones de teclado para alemán, francés, inglés de USA y de UK y de España va sobrado creo yo.
-##### Más tarde hay que elegir la distribución de teclado que tendrá el sistema instalado, en concreto cuando hay que editar el archivo /etc/vconsole.conf (simplemente añadir KEYMAP=X, de nuevo la X será el código de teclado a usar, busca `vconsole` en Test2.bash para ver como va), la idea es preguntar si desea meter la misma distribución de teclado en el sistema instalado que la que haya elegido en el live. 
-##### En la línea que hay justo aquí debajo deberías añadir un link o variable o como sea para que cuando por ejemlo ponga el teclado en inglés de UK que lo ponga en el echo.
-
-
-
+##### Más tarde hay que elegir la distribución de teclado que tendrá el sistema instalado, en concreto cuando hay que editar el archivo /etc/vconsole.conf (simplemente añadir KEYMAP=X, de nuevo la X será el código de teclado a usar, busca `vconsole` en Test2.bash para ver como va), la idea es preguntar si desea meter la misma distribución de teclado en el sistema instalado que la que haya elegido en el live.
 
 	mount -o remount,size=2G /run/archiso/cowspace 2>> $LOG && echo "/run/archiso/cowspace ampliada a 2GB" >> $LOG
 	echo "/run/archiso/cowspace ampliada a 2GB"
