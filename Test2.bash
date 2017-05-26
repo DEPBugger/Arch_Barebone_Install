@@ -34,7 +34,7 @@ echo "
 SigLevel = Never
 Server = http://repo.archlinux.fr/$"arch"" >> /etc/pacman.conf
 echo "Añadido repositorio para instalar yaourt (se eliminará más tarde)"
-pacman -Syy --noconfirm --needed yaourt xorg  xorg-server mesa mesa-demos xf86-video-vesa xf86-video-intel firefox terminator geany
+pacman -Syy --noconfirm --needed yaourt xorg xorg-server xorg-xinit mesa mesa-demos xf86-video-vesa xf86-video-intel firefox terminator geany
 echo "Sistema gráfico básico instalado"
 # Preguntar si está instalando en VirtualBox
 pacman -S virtualbox-guest-modules-arch --noconfirm
