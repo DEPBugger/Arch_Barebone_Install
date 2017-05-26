@@ -6,7 +6,7 @@ USER=`whoami`
 DEBUG="true"
 LOG="/tmp/ArchInstall"
 
-#TERMINADO
+#TERMINADO (Solo falta rellenar información en los "echo" con advertencias de que algo puede fallar)
 #Function that gives information about the installation process
 function InfoHelp() {
 	clear
@@ -33,7 +33,7 @@ function InfoHelp() {
 		done
 }
 
-#### Falta comprobar configuración de red
+#### TERMINADO (Falta comprobar configuración de red)
 function PreConfig() {
 	clear
 	touch $LOG #Creates log file
@@ -167,7 +167,7 @@ function ConfDisk() {
 
 		DISK=`fdisk -l | grep "Disk /dev/sd" | wc -l` #Cantidad de discos en el equipo
 
-		if [ $DISK -gt 1 ]; then
+		if [ $DISK -eq 1 ]; then
 			echo "Solo tienes un disco duro, seleccionando /dev/sda como objetivo"
 			DISK="/dev/sda"
 			echo "Pulsa INTRO para continuar y entrar a cfdisk"
@@ -215,6 +215,8 @@ function ConfDisk() {
 
 	while true #Pregunta si asistir en el particionado o entrar en modo manual
 		do
+			clear
+			echo ""
 			echo "1) Particionamiento Guiado"
 			echo "2) Particionamiento manual"
 			echo "3) Particionado y formateado automático usando el primer disco duro completo /dev/sda"
