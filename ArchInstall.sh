@@ -85,7 +85,8 @@ function ConfDisk() {
 
 	function HelpDisk() { #Función para particionmiento guiado
 		#Preguntar paso a paso
-
+		clear
+		echo "Particionar el disco duro"
 		# echo "Crear partición boot [s/n]"
 		# echo "Crear partición home [s/n]"
 
