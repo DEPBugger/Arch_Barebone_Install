@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #Variables
+LANGUAGE="en"
 USER=`whoami`
 DEBUG="true"
 LOG="/tmp/ArchInstall"
@@ -39,7 +40,20 @@ function PreConfig() {
 		exit 1
 	fi
 	
-##### Añadir opción de poner el teclado en varios idiomas https://wiki.archlinux.org/index.php/Keyboard_configuration_in_console
+	#Pedir introducir el idioma de teclado
+	while true
+		echo "Introduce el idioma de teclado" # https://wiki.archlinux.org/index.php/Keyboard_configuration_in_console
+		echo "es Para español"
+		echo "en Para inglés"
+
+		read LANGUAGE
+
+		case $LANGUAGE in
+			es|Es|ES) break;;
+			en|En|EN) break;;
+			*) echo "Opción no válida, inserta solo una de las opciones anteriores"
+		esac
+	done
 ##### Comando `locacectl status` para ver la distribución actual del teclado, la salida te la dejo en imgur por si quieres mostrar una parte de la salida y preguntar si es correcto tras elegir la distribución de teclado: http://i.imgur.com/JKrqIu7.png
 ##### Comando para cargar la distribuciones del teclado `loadkeys X` donde X es el código de la distribución, aquí tienes la información necesaria: https://wiki.archlinux.org/index.php/Keyboard_configuration_in_console#Keymap_codes
 ##### Para ver una lista de todos los códigos disponibles ejecutar `find /usr/share/kbd/keymaps/ -type f`, su salida (el código que debes poner donde la X es el nombre del archivo sin la extension .map.gz, por ejemplo para ponerlo en español es `loadkeys es` porque el nombre del archivo es es.map.gz): https://bpaste.net/show/c9e19c8e273d
@@ -47,9 +61,12 @@ function PreConfig() {
 ##### Más tarde hay que elegir la distribución de teclado que tendrá el sistema instalado, en concreto cuando hay que editar el archivo /etc/vconsole.conf (simplemente añadir KEYMAP=X, de nuevo la X será el código de teclado a usar, busca `vconsole` en Test2.bash para ver como va), la idea es preguntar si desea meter la misma distribución de teclado en el sistema instalado que la que haya elegido en el live. 
 ##### En la línea que hay justo aquí debajo deberías añadir un link o variable o como sea para que cuando por ejemlo ponga el teclado en inglés de UK que lo ponga en el echo.
 
+
 	loadkeys es 2>> $LOG && echo "Teclado del entorno live configurado a español" >> $LOG #Establece teclado en español
+	echo "Teclado del entorno live configurado a español"
 
 	mount -o remount,size=2G /run/archiso/cowspace 2>> $LOG && echo "/run/archiso/cowspace ampliada a 2GB" >> $LOG
+	echo "/run/archiso/cowspace ampliada a 2GB"
 
 	#Comprobar internet
 
