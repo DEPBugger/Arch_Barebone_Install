@@ -128,21 +128,35 @@ function ConfDisk() {
 		clear
 		echo "Particionar el disco duro de forma Guiada"
 		echo ""
+		sleep 3s
 
 		while true; do
 			echo "¿Quieres instalarlo todo en 1 partición? (UEFI y /)"
 			echo "Selecciona [s/n]"
 			echo ""
 
+			read input
+
+			case $input in
+				s|S) echo "Se ha elegido SI"
+						# Comprobar discos duros, si solo hay 1 continuar, si hay más pedir elegir
+						# Mostrar que se va a particionar (UEFI 100mb en /dev/sdX1 y root en /dev/sdX2)
+						# Confirmar cambios y llamar a la función de arriba, "ToFormat"
+						echo "Pulsa INTRO para continuar"
+						read input
+						;;
+				n|N) echo "Se ha elegido NO"
+						# echo "Crear partición boot [s/n]"
+						# echo "Crear partición home [s/n]"
+						# echo "Introduce tamaño para EFI (recomendado 100mb)
+						# echo "Introduce tamaño para raíz"
+						# echo "Introduce tamaño para boot"
+						# echo "Introduce tamaño para home"
+						echo "Pulsa INTRO para continuar"
+						read input
+						;;
+				*) echo "Opción incorrecta";;
 		done
-
-		# echo "Crear partición boot [s/n]"
-		# echo "Crear partición home [s/n]"
-
-		# echo "Introduce tamaño para EFI (recomendado 100mb)
-		# echo "Introduce tamaño para raíz"
-		# echo "Introduce tamaño para boot"
-		# echo "Introduce tamaño para home"
 	}
 
 	function ManualDisk() { #Función para particionamiento manual
@@ -166,6 +180,8 @@ function ConfDisk() {
 
 				#ToFormat(efi raiz boot home)
 		#fi
+
+
 	}
 
 	while true #Pregunta si asistir en el particionado o entrar en modo manual
