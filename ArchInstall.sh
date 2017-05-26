@@ -88,16 +88,14 @@ function PreConfig() {
 		esac
 	done
 
-
-
 	mount -o remount,size=2G /run/archiso/cowspace 2>> $LOG && echo "/run/archiso/cowspace ampliada a 2GB" >> $LOG
 	echo "/run/archiso/cowspace ampliada a 2GB"
 
-	#Comprobar internet
+	# Activar red por cliente dhcp
+	echo "Activando Cliente DHCP" && echo "Activando Cliente DHCP" >> $LOG
+	dhcpcd 2>> $LOG
 
-	#Actualizar pacman y git sin pedir confirmación?=?
-	# pacman -Syy --noconfirm git
-	# echo "git instalado"
+	#Comprobar conexión a internet, mirar que en 1 de 3 ping haya obtenido respuesta de www.google.es
 }
 
 function ConfRed() {
