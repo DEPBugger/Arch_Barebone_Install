@@ -58,6 +58,8 @@ function PreConfig() {
 				es|Es|ES) break;;
 				en|En|EN) break;;
 				*) echo "Opción no válida, inserta solo una de las opciones anteriores"
+					echo "Pulsa intro para continuar"
+					read input;;
 			esac
 		done
 		loadkeys $LANGUAGE 2>> $LOG && echo "Teclado del entorno live configurado a $LANGUAGE" >> $LOG #Establece teclado en español
@@ -66,6 +68,8 @@ function PreConfig() {
 		localectl status #Muestra distribución actual del teclado
 		echo " "
 	}
+
+	selectKeyboard
 
 	while true; do
 		echo "Es correcta la distribución [y/n]"
@@ -76,6 +80,7 @@ function PreConfig() {
 			y|Y) break;;
 			n|N) selectKeyboard;;
 			*) echo "Opción no válida"
+		esac
 	done
 
 ##### Comando `locacectl status` para ver la distribución actual del teclado, la salida te la dejo en imgur por si quieres mostrar una parte de la salida y preguntar si es correcto tras elegir la distribución de teclado: http://i.imgur.com/JKrqIu7.png
