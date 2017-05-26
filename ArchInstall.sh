@@ -165,13 +165,36 @@ function ConfDisk() {
 		echo "Particionar el disco duro de forma manual"
 		echo ""
 
-		DISK=`fdisk -l | grep "Disco /dev/sd" | wc -l` #Cantidad de discos en el equipo
+		DISK=`fdisk -l | grep "Disk /dev/sd" | wc -l` #Cantidad de discos en el equipo
 
+		if [ $DISK -gt 1 ]; then
+			echo "Solo tienes un disco duro, seleccionando /dev/sda como objetivo"
+			DISK="/dev/sda"
+			echo "Pulsa INTRO para continuar y entrar a cfdisk"
+			read input
+			cfdisk /dev/sda
+		else
+			echo "En tu equipo tienes $DISK discos duros, son los siguientes:"
+			echo ""
+			fdisk -l | grep "Disk /dev/sd"
+			echo ""
 
-		echo "Los discos duros en tu equipo son los siguientes:"
-		# Tienes X discos duros elige donde instalar (si tiene solo 1 continuar)
-		# if [ 1HDD ]; then
-		# 	cfdisk /dev/sda
+			while true; do
+				echo "Introduce el disco duro objetivo"
+				echo "Por ejemplo: /dev/sda"
+				read DISK
+
+				echo "El disco elegido es: $DISK"
+				echo "¿Es correcto? Introduce [s/n]"
+
+				read input
+					case $input in
+						s|S) break;;
+						n|N
+				cfdisk HDDELEGIDO
+			done
+		fi
+
 		# else
 				#Mostrar discos duros
 				# echo "Introduce el disco duro"
