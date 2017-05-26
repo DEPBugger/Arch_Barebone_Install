@@ -156,12 +156,19 @@ function ConfDisk() {
 						read input
 						;;
 				*) echo "Opción incorrecta";;
+			esac
 		done
 	}
 
 	function ManualDisk() { #Función para particionamiento manual
 		clear
 		echo "Particionar el disco duro de forma manual"
+		echo ""
+
+		DISK=`fdisk -l | grep "Disco /dev/sd" | wc -l` #Cantidad de discos en el equipo
+
+
+		echo "Los discos duros en tu equipo son los siguientes:"
 		# Tienes X discos duros elige donde instalar (si tiene solo 1 continuar)
 		# if [ 1HDD ]; then
 		# 	cfdisk /dev/sda
