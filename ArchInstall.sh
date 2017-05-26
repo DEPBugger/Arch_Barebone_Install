@@ -97,6 +97,8 @@ function ConfDisk() {
 	}
 
 	function ManualDisk() { #Función para particionamiento manual
+		clear
+		echo "Particionar el disco duro de forma manual"
 		# Tienes X discos duros elige donde instalar (si tiene solo 1 continuar)
 		# if [ 1HDD ]; then
 		# 	cfdisk /dev/sda
