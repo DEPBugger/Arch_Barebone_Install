@@ -190,28 +190,21 @@ function ConfDisk() {
 				read input
 					case $input in
 						s|S) break;;
-						n|N
-				cfdisk HDDELEGIDO
+						n|N clear; echo "Introduce de nuevo el disco";;
+						*) echo "Has elegido una opción inválida";;
 			done
+
+			# Abrir el gestor de particiones cfdisk
+			cfdisk $DISK
+
+			##### Preparar para llamar a la función que formatea las particiones
+			# echo "introduce efi"
+			# echo "introduce raíz"
+			# echo "introduce boot (dejar vacio si no hay)"
+			# echo "introduce home (dejar vacio si no hay)"
+
+			# ToFormat(efi raiz boot home)
 		fi
-
-		# else
-				#Mostrar discos duros
-				# echo "Introduce el disco duro"
-				# echo "El disco elegido es: XXXX???"
-				# echo "Pulsa una tecla para continuar..."
-				# read input
-				# cfdisk HDDELEGIDO
-
-				# echo "introduce efi"
-				# echo "introduce raíz"
-				# echo "introduce boot (dejar vacio si no hay)"
-				# echo "introduce home (dejar vacio si no hay)"
-
-				#ToFormat(efi raiz boot home)
-		#fi
-
-
 	}
 
 	while true #Pregunta si asistir en el particionado o entrar en modo manual
