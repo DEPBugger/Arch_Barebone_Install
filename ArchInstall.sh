@@ -51,7 +51,7 @@ function PreConfig() {
 			echo "Introduce el idioma de teclado"
 			# https://wiki.archlinux.org/index.php/Keyboard_configuration_in_console
 			echo "es Para Español"
-			echo "en Para Inglés Inglaterra"
+			echo "uk Para Inglés Inglaterra"
 			echo "fr Para Francés"
 			echo "de Para Alemán"
 			echo "us Para Inglés de USA"
@@ -60,7 +60,7 @@ function PreConfig() {
 
 			case $LANGUAGE in
 				es|Es|ES) break;;
-				en|En|EN) break;;
+				uk|Uk|UK) break;;
 				fr|Fr|FR) break;;
 				de|De|DE) break;;
 				us|Us|US) break;;
