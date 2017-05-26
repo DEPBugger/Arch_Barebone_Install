@@ -82,7 +82,7 @@ function PreConfig() {
 		echo ""
 		echo "Keyboard layout actual info:"
 		localectl status #Shows keyboard layout actual info
-		echo " "
+		echo ""
 	}
 
 	selectKeyboard
