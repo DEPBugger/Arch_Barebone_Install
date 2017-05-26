@@ -88,7 +88,7 @@ function PreConfig() {
 		esac
 	done
 
-##### Más tarde hay que elegir la distribución de teclado que tendrá el sistema instalado, en concreto cuando hay que editar el archivo /etc/vconsole.conf (simplemente añadir KEYMAP=X, de nuevo la X será el código de teclado a usar, busca `vconsole` en Test2.bash para ver como va), la idea es preguntar si desea meter la misma distribución de teclado en el sistema instalado que la que haya elegido en el live.
+
 
 	mount -o remount,size=2G /run/archiso/cowspace 2>> $LOG && echo "/run/archiso/cowspace ampliada a 2GB" >> $LOG
 	echo "/run/archiso/cowspace ampliada a 2GB"
@@ -212,6 +212,7 @@ function ToInstall() {
 }
 
 function PostInstall() {
+	##### Elegir la distribución de teclado que tendrá el sistema instalado, en concreto cuando hay que editar el archivo /etc/vconsole.conf (simplemente añadir KEYMAP=X, de nuevo la X será el código de teclado a usar, busca `vconsole` en Test2.bash para ver como va), la idea es preguntar si desea meter la misma distribución de teclado en el sistema instalado que la que haya elegido en el live.
 	echo "Se ha terminado de instalar, ¿desea apagar el equipo?"
 	#Preguntar si o no [s/n]
 	#En caso de si apagar:
