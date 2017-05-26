@@ -33,6 +33,7 @@ function InfoHelp() {
 		done
 }
 
+#### Falta comprobar configuración de red
 function PreConfig() {
 	clear
 	touch $LOG #Creates log file
@@ -93,6 +94,7 @@ function PreConfig() {
 }
 
 function ConfRed() {
+	clear
 	echo "Activando Cliente DHCP" && echo "Activando Cliente DHCP" >> $LOG
 	dhcpcd 2>> $LOG && echo "El comando dhcpcd ha funcionado correctamente" >> $LOG
 
@@ -101,12 +103,16 @@ function ConfRed() {
 }
 
 function ConfDisk() {
+	clear
 	echo "Comprobando tus Discos Duros y Particiones en ellos."
 	sleep 1s
+	clear
 	echo "Comprobando tus Discos Duros y Particiones en ellos.."
 	sleep 1s
+	clear
 	echo "Comprobando tus Discos Duros y Particiones en ellos..."
 	sleep 1s
+	clear
 
 	lsblk
 
@@ -120,7 +126,16 @@ function ConfDisk() {
 	function HelpDisk() { #Función para particionmiento guiado
 		#Preguntar paso a paso
 		clear
-		echo "Particionar el disco duro"
+		echo "Particionar el disco duro de forma Guiada"
+		echo ""
+
+		while true; do
+			echo "¿Quieres instalarlo todo en 1 partición? (UEFI y /)"
+			echo "Selecciona [s/n]"
+			echo ""
+
+		done
+
 		# echo "Crear partición boot [s/n]"
 		# echo "Crear partición home [s/n]"
 
