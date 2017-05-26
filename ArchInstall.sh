@@ -190,8 +190,9 @@ function ConfDisk() {
 				read input
 					case $input in
 						s|S) break;;
-						n|N clear; echo "Introduce de nuevo el disco";;
+						n|N) clear;	echo "Introduce de nuevo el disco";;
 						*) echo "Has elegido una opción inválida";;
+					esac
 			done
 
 			# Abrir el gestor de particiones cfdisk
@@ -207,17 +208,24 @@ function ConfDisk() {
 		fi
 	}
 
+	function AutoFormat() {
+		clear
+		echo "Comenzando autofomateado"
+	}
+
 	while true #Pregunta si asistir en el particionado o entrar en modo manual
 		do
 			echo "1) Particionamiento Guiado"
 			echo "2) Particionamiento manual"
+			echo "3) Particionado y formateado automático usando el primer disco duro completo /dev/sda"
 
 			read input
 
 			case $input in
 				1) HelpDisk;;
 				2) ManualDisk;;
-				*) echo "Opción incorrecta, introduce 1 o 2";;
+				3) AutoFormat;;
+				*) echo "Opción incorrecta, introduce 1, 2 o 3";;
 			esac
 		done
 
