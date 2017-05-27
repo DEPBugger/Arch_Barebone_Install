@@ -44,7 +44,6 @@ ping -c 3 kernel.org
 lsblk
 # ¿Continuar?
 read -p 'Ahora deberás editar el particionado de tu disco, pulsa Enter cuando estés list@'
-# echo 'Pulsa enter cuando estés list@'
 # Añadir espera tras el echo anterior
 # Añadir opción para eliminar la tabla de particiones
 cfdisk /dev/sda
@@ -73,6 +72,7 @@ ls /mnt
 arch-chroot /mnt bash Test1.bash
 ############-----Ahora ejecutará el siguiente script-----############
 ############-----Todo lo que hay a continuación se ejecuta después de que Test1.bash haya finalizado-----############
+echo ''
 umount -R /mnt
 echo 'A continuación se reiniciará el ordenador, por favor extrae el medio de instalación de Arch Linux (memoria USB, DVD, CD...) en cuanto desaparezcan estas letras.'
 read -p 'Pulsa Enter cuando hayas leído y comprendido el mensaje anterior.'
