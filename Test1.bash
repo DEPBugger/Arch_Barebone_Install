@@ -42,4 +42,5 @@ arch-chroot /mnt bash Test2.bash
 ############-----Ahora ejecutará el siguiente script-----############
 ############-----Todo lo que hay a continuación se ejecuta después de que Test2.bash haya finalizado-----############
 umount -R /mnt
+echo "A continuación se reiniciará el ordenador, por favor extrae el medio de instalación de Arch Linux (memoria USB, DVD, CD...)"
 poweroff
