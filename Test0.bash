@@ -1,6 +1,12 @@
 #!/bin/bash
 # Este script es solo una prueba, y aunque no lo fuera lo usas bajo tu propio riesgo. No lo uses en tu ordenador real, pruébalo en una máquina virtual.
 # Pensado para computadoras de 64 bits
+echo ''
+echo ''
+echo ''
+echo ''
+echo ''
+echo ''
 echo '
                    -`                     Welcome to an awesome Arch install script
                   .o+`                    This script will install Arch Linux in a
@@ -68,6 +74,6 @@ arch-chroot /mnt bash Test1.bash
 ############-----Ahora ejecutará el siguiente script-----############
 ############-----Todo lo que hay a continuación se ejecuta después de que Test1.bash haya finalizado-----############
 umount -R /mnt
-echo 'A continuación se reiniciará el ordenador, por favor extrae el medio de instalación de Arch Linux (memoria USB, DVD, CD...)'
-read -p 'Pulsa Enter cuando hayas extraído el medio de instalación'
+echo 'A continuación se reiniciará el ordenador, por favor extrae el medio de instalación de Arch Linux (memoria USB, DVD, CD...) en cuanto desaparezcan estas letras.'
+read -p 'Pulsa Enter cuando hayas leído y comprendido el mensaje anterior.'
 reboot

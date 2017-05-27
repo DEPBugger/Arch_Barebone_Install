@@ -43,7 +43,14 @@ pacman -S virtualbox-guest-modules-arch --noconfirm
 # Preguntar si desea instalar Xfce4 y lxdm (añadir más DE en el futuro)
 # Editar vbox y que use el nombre de usuario creado anteriormente
 # Autointroducir la contraseña que se introdujo antes para el usuario
-read -p 'Instalando yaourt, Xfce y lxdm y varios extras, introduce la contraseña de vbox cuando se requiera. Pulsa Enter para continuar'
+echo ''
+echo ''
+echo ''
+echo ''
+echo ''
+echo ''
+echo -p 'Instalando yaourt, Xfce y lxdm y varios extras'
+read -p 'A continuación deberás introducir la contraseña del usuario root en tres ocasiones. Pulsa Enter para continuar'
 su vbox -c 'yaourt -S --noconfirm --needed xdg-user-dirs xfce4 xfce4-goodies lxdm lxdm-themes neofetch zsh git wget curl && xdg-user-dirs-update'
 echo 'yaourt Xfce y lxdm y sus extras instalados'
 sed -i '$d' /etc/pacman.conf
@@ -53,7 +60,10 @@ sed -i '$d' /etc/pacman.conf
 echo 'Repositorio [archlinuxfr] eliminado'
 systemctl enable lxdm.service
 systemctl enable NetworkManager.service
+echo ''
+echo 'A continuación debería aparecer el archivo Test1.bash acompañado de otros ficheros'
 ls
 rm $0
+echo ''
+echo 'Ahora deben aparecer solo los otros ficheros, sin el archivo Test1.bash'
 ls
-exit
