@@ -38,7 +38,7 @@ pacstrap /mnt base base-devel networkmanager net-tools
 genfstab -U /mnt >> /mnt/etc/fstab
 cp ~/Arch_Barebone_Install/Test2.bash /mnt/tmp
 ls /mnt/tmp
-arch-chroot /mnt 'bash /tmp/Test2.bash'
+arch-chroot /mnt bash '/tmp/Test2.bash'
 ############-----Ahora ejecutará el siguiente script-----############
 ############-----Todo lo que hay a continuación se ejecuta después de que Test2.bash haya finalizado-----############
 umount -R /mnt
