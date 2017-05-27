@@ -31,10 +31,11 @@ echo '########---Instalando reflector y actualizando la mirrorlist del live---##
 pacman -Syy reflector --noconfirm
 reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 pacstrap /mnt base base-devel networkmanager net-tools
-genfstab -U -p /mnt >> /mnt/etc/fstab
+genfstab -U /mnt >> /mnt/etc/fstab
 cp ~/Arch_Barebone_Install/Test2.bash /mnt
 ls /mnt/tmp
 arch-chroot /mnt bash Test2.bash
 ############-----Ahora ejecutará el siguiente script-----############
 ############-----Todo lo que hay a continuación se ejecuta después de que Test2.bash haya finalizado-----############
+umount -R /mnt
 poweroff

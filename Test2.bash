@@ -5,6 +5,7 @@ echo "Introduce la contraseña de la cuenta root, pulsa enter e introdúcela de 
 passwd
 echo "Contraseña actualizada correctamente"
 ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime
+hwclock --systohc
 echo "Zona horaria cambiada a Madrid"
 # Añadir la opción de meter otras zonas horarias
 sed -i 's/#es_ES.UTF-8 UTF-8/es_ES.UTF-8 UTF-8/' /etc/locale.gen
