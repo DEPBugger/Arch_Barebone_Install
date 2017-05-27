@@ -3,4 +3,4 @@ Usuario --> root
 Hostname --> archiso
 >root@archiso
 
-Editar los Continue? [y/n] para que queden de la forma Continue? [y/n] _ siendo _ una y o  n según el usuario haya escrito
+Editar los Continue? [y/n] para que queden de la forma Continue? [y/n] _ siendo _ una y o n según el usuario haya escrito
