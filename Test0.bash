@@ -34,7 +34,7 @@ mount -o remount,size=2G /run/archiso/cowspace
 echo '/run/archiso/cowspace ampliada a 2GB'
 pacman -Syy --noconfirm git
 echo 'git instalado'
-git clone https://github.com/DEPBugger/Arch_Barebone_Install.git
+git clone https://github.com/DEPBugger/Arch_Barebone_Install.git --branch test
 echo 'Repositorio clonado'
 cd Arch_Barebone_Install
 echo 'Se ha entrado en la carpeta del repo'
