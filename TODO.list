@@ -10,5 +10,6 @@ Comment scripts in order that anyone could easily edit them: not done yet
 Make the hole repository (README.md and scripts' comments) bilingual. English and Spanish translations: not done yet
 Add support for legacy BIOS installation: not done yet
 Autodetect if running on VirtualBox, VMware or real computer (perhaps with lspci command): not done yet
+Use parted instead of cfdisk: not done yet
 
 Please feel free to collaborate on this repo. Thanks for reading.
