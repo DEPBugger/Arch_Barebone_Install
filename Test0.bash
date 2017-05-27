@@ -43,6 +43,7 @@ dhcpcd
 ping -c 3 kernel.org
 lsblk
 # ¿Continuar?
+echo''
 read -p 'Ahora deberás editar el particionado de tu disco, pulsa Enter cuando estés list@'
 # Añadir espera tras el echo anterior
 # Añadir opción para eliminar la tabla de particiones
