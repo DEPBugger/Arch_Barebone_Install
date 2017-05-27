@@ -1,7 +1,7 @@
 #!/bin/bash
 echo ArchLinux > /etc/hostname
 echo "Nombre del host a instalar: ArchLinux"
-echo "Introduce la contraseña de la cuenta root, pulsa enter e introdúcela de nuevo"
+echo "Introduce la contraseña del usuario root pulsa enter e introdúcela de nuevo"
 passwd
 echo "Contraseña del usuario root actualizada correctamente"
 ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime
