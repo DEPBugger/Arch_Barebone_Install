@@ -1,4 +1,5 @@
 #!/bin/bash
+cat WelcomeTextFile
 loadkeys es
 echo "Teclado del entorno live configurado a español"
 mount -o remount,size=2G /run/archiso/cowspace
