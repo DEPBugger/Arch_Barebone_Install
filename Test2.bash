@@ -35,7 +35,7 @@ echo "
 SigLevel = Never
 Server = http://repo.archlinux.fr/$"arch"" >> /etc/pacman.conf
 echo "Añadido repositorio para instalar yaourt (se eliminará más tarde)"
-pacman -Syy --noconfirm --needed yaourt xorg xorg-server xorg-xinit mesa mesa-demos xf86-video-vesa xf86-video-intel firefox terminator geany neofetch
+pacman -Syy --noconfirm --needed yaourt xorg xorg-server xorg-xinit mesa mesa-demos xf86-video-vesa xf86-video-intel firefox terminator geany
 echo "Sistema gráfico básico instalado"
 # Preguntar si está instalando en VirtualBox
 pacman -S virtualbox-guest-modules-arch --noconfirm
@@ -44,7 +44,7 @@ pacman -S virtualbox-guest-modules-arch --noconfirm
 # Editar vbox y que use el nombre de usuario creado anteriormente
 # Autointroducir la contraseña que se introdujo antes para el usuario
 echo "Instalando yaourt, Xfce y lxdm y varios extras"
-su vbox -c 'yaourt -S --noconfirm --needed xdg-user-dirs xfce4 xfce4-goodies lxdm lxdm-themes zsh git wget curl && xdg-user-dirs-update'
+su vbox -c 'yaourt -S --noconfirm --needed xdg-user-dirs xfce4 xfce4-goodies lxdm lxdm-themes neofetch zsh git wget curl && xdg-user-dirs-update'
 echo "yaourt Xfce y lxdm y sus extras instalados"
 sed -i '$d' /etc/pacman.conf
 sed -i '$d' /etc/pacman.conf
