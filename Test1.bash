@@ -2,7 +2,7 @@
 # Este script es solo una prueba, y aunque no lo fuera lo usas bajo tu propio riesgo. No lo uses en tu ordenador real, pruébalo en una máquina virtual.
 # Pensado para computadoras de 64 bits
 cat WelcomeTextFile
-read -p
+read -p "Press Enter to begin installation process."
 # ¿Continuar?
 dhcpcd
 ping -c 3 kernel.org
