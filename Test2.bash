@@ -3,7 +3,7 @@ echo ArchLinux > /etc/hostname
 echo "Nombre del host a instalar: ArchLinux"
 echo "Introduce la contraseña de la cuenta root, pulsa enter e introdúcela de nuevo"
 passwd
-echo "Contraseña actualizada correctamente"
+echo "Contraseña del usuario root actualizada correctamente"
 ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime
 hwclock --systohc
 echo "Zona horaria cambiada a Madrid"
@@ -35,7 +35,7 @@ echo "
 SigLevel = Never
 Server = http://repo.archlinux.fr/$"arch"" >> /etc/pacman.conf
 echo "Añadido repositorio para instalar yaourt (se eliminará más tarde)"
-pacman -Syy --noconfirm --needed yaourt xorg xorg-server xorg-xinit mesa mesa-demos xf86-video-vesa xf86-video-intel firefox terminator geany
+pacman -Syy --noconfirm --needed yaourt xorg xorg-server xorg-xinit mesa mesa-demos xf86-video-vesa xf86-video-intel firefox terminator geany neofetch
 echo "Sistema gráfico básico instalado"
 # Preguntar si está instalando en VirtualBox
 pacman -S virtualbox-guest-modules-arch --noconfirm
