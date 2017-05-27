@@ -1,44 +1,59 @@
 #!/bin/bash
-# Este script es solo una prueba, y aunque no lo fuera lo usas bajo tu propio riesgo. No lo uses en tu ordenador real, pruébalo en una máquina virtual.
-# Pensado para computadoras de 64 bits
-echo ''
-echo ''
-echo ''
-# ¿Continuar?
-dhcpcd
-ping -c 3 kernel.org
-lsblk
-# ¿Continuar?
-echo 'Ahora deberás editar el particionado de tu disco, pulsa Enter cuando estés list@'
-# echo 'Pulsa enter cuando estés list@'
-# Añadir espera tras el echo anterior
-# Añadir opción para eliminar la tabla de particiones
-cfdisk /dev/sda
-lsblk
-# ¿Es correcto?
-# Añadir opción para editar el /dev/sdXY de los mkfs
-mkfs.vfat -F32 /dev/sda1
-mkfs.ext4 -L 'Arch Linux' /dev/sda2
-# mkfs.ext4 -L 'home' /dev/sda3
-# mkswap /dev/sda4
-# swapon /dev/sda4
-# mkdir /mnt/home
-mount /dev/sda2 /mnt
-mkdir -p /mnt/boot/efi
-mount /dev/sda1 /mnt/boot/efi
-lsblk
-# ¿Está correcto?
-# mount /dev/sda3 /mnt/home
-echo '########---Instalando reflector y actualizando la mirrorlist del live---########'
-pacman -Syy reflector --noconfirm
-reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-pacstrap /mnt base base-devel networkmanager net-tools
-genfstab -U /mnt >> /mnt/etc/fstab
-cp ~/Arch_Barebone_Install/Test2.bash /mnt
-ls /mnt
-arch-chroot /mnt bash Test2.bash
-############-----Ahora ejecutará el siguiente script-----############
-############-----Todo lo que hay a continuación se ejecuta después de que Test2.bash haya finalizado-----############
-umount -R /mnt
-echo 'A continuación se reiniciará el ordenador, por favor extrae el medio de instalación de Arch Linux (memoria USB, DVD, CD...)'
-poweroff
+echo ArchLinux > /etc/hostname
+echo 'Nombre del host a instalar: ArchLinux'
+echo 'Introduce la contraseña del usuario root pulsa enter e introdúcela de nuevo'
+passwd
+echo 'Contraseña del usuario root creada correctamente'
+ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime
+hwclock --systohc
+echo 'Zona horaria cambiada a Madrid'
+# Añadir la opción de meter otras zonas horarias
+sed -i 's/#es_ES.UTF-8 UTF-8/es_ES.UTF-8 UTF-8/' /etc/locale.gen
+echo 'LANG=es_ES.UTF-8' > /etc/locale.conf
+locale-gen
+echo 'KEYMAP=es' > /etc/vconsole.conf
+mkinitcpio -p linux
+# Añadir opción para editar el /dev/sda1 y la /dev/sda y 1 de después
+pacman -S --noconfirm --needed refind-efi && refind-install --usedefault /dev/sda1 --alldrivers && efibootmgr -c -d /dev/sda -p 1 -L rEFInd -l /EFI/BOOT/bootx64.efi
+echo 'rEFInd instalado y habilitado para el próximo arranque'
+# Editar vbox y poner opción de que el usuario escriba su nombre
+echo 'Creando usuario vbox'
+useradd -m -g users -G audio,lp,optical,storage,video,wheel,games,power,scanner -s /bin/bash vbox
+echo 'Usuario vbox creado'
+# Editar vbox y poner opción de que el usuario escriba su nombre
+echo 'Introduzca la contraseña para el usuario vbox'
+passwd vbox
+echo 'Contraseña del usuario vbox creada correctamente'
+sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
+echo 'sudo habilitado'
+sed -i 's/#Color/Color\nILoveCandy/' /etc/pacman.conf
+echo 'Easter egg habilitado'
+sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+echo 'Repositorio [multilib] habilitado'
+echo '
+[archlinuxfr]
+SigLevel = Never
+Server = http://repo.archlinux.fr/$'arch'' >> /etc/pacman.conf
+echo 'Añadido repositorio para instalar yaourt (se eliminará más tarde)'
+pacman -Syy --noconfirm --needed yaourt xorg xorg-server xorg-xinit mesa mesa-demos xf86-video-vesa xf86-video-intel firefox terminator geany
+echo 'Sistema gráfico básico instalado'
+# Preguntar si está instalando en VirtualBox
+pacman -S virtualbox-guest-modules-arch --noconfirm
+# Eliminar el repositorio [archlinuxfr] de pacman.conf
+# Preguntar si desea instalar Xfce4 y lxdm (añadir más DE en el futuro)
+# Editar vbox y que use el nombre de usuario creado anteriormente
+# Autointroducir la contraseña que se introdujo antes para el usuario
+read -p 'Instalando yaourt, Xfce y lxdm y varios extras, introduce la contraseña de vbox cuando se requiera. Pulsa Enter para continuar'
+su vbox -c 'yaourt -S --noconfirm --needed xdg-user-dirs xfce4 xfce4-goodies lxdm lxdm-themes neofetch zsh git wget curl && xdg-user-dirs-update'
+echo 'yaourt Xfce y lxdm y sus extras instalados'
+sed -i '$d' /etc/pacman.conf
+sed -i '$d' /etc/pacman.conf
+sed -i '$d' /etc/pacman.conf
+sed -i '$d' /etc/pacman.conf
+echo 'Repositorio [archlinuxfr] eliminado'
+systemctl enable lxdm.service
+systemctl enable NetworkManager.service
+ls
+rm $0
+ls
+exit
