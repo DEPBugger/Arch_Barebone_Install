@@ -28,8 +28,6 @@ echo '
  `++:.                           `-/+/    
  .`                                 `/    '
 read -p 'Press Enter to begin installation process.'
-loadkeys es
-echo 'Teclado del entorno live configurado a español'
 mount -o remount,size=2G /run/archiso/cowspace
 echo '/run/archiso/cowspace ampliada a 2GB'
 pacman -Syy --noconfirm git
