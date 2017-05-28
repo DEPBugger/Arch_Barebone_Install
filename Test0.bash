@@ -191,7 +191,7 @@ echo 'Cargado refind-theme-regular en refind.conf'
 echo 'Por favor, introduce por última vez la contraseña del usuario ${NEW_USER}'
 echo 'A continuación debería aparecer el archivo Test1.bash acompañado de otros ficheros'
 ls
-rm $0
+rm Test1.bash
 echo ''
 echo 'Ahora deben aparecer solo los otros ficheros, sin el archivo Test1.bash'
 ls
