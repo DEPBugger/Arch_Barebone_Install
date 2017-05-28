@@ -1,4 +1,4 @@
-# ![](logo.png) Arch_Barebone_Install
+# ![Proyect Logo](logo.jpg) Arch_Barebone_Install
 
 ## English:
 - Once Arch Linux live (UEFI mode) had booted up just run this command in order to download the first script and start the install process: 
