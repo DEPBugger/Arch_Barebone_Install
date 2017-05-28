@@ -17,16 +17,18 @@ LANGUAGE="en"
 USER=`whoami`
 DEBUG="false"
 LOG="/tmp/ArchInstall.log"
+NUM_DISKS=`fdisk -l | tr -s " " | cut -d " " -f 2 | cut -d ":" -f 1 | grep "/dev/sd" | wc -l` # Cantidad de discos SATA
 
 #############################
 ##        FUNCIONES        ##
 #############################
 function conditions() { # Función que comprueba condiciones mínimas para instalar
 	echo "Comprobando condiciones"
+	if [ -d ls /sys/firmware/efi/efivars ] && [ $USER == "root" ] && [ $NUM_DISKS -ge 1 ];
+
 	#Es root
 	#hay HDD
 	#HDD con más de 8GB
-	#Iniciado en UEFI
 	#Enchufado si es portatil
 	#Red
 }
