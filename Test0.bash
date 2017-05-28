@@ -36,7 +36,7 @@ echo''
 dhcpcd
 timedatectl set-ntp true
 echo''
-ping -c 3 kernel.org
+ping -c 3 archlinux.org
 echo ''
 lsblk
 # ¿Continuar?
