@@ -31,28 +31,104 @@ echo '
  `++:.                           `-/+/
  .`                                 `/    '
 read -p 'Pulsa enter para iniciar la Instalacion'
-loadkeys es
-echo 'Teclado del entorno live configurado a español'
+while true; do
+  clear
+  echo "Selecciona el idioma de teclado que quieres:"
+  echo "es para el teclado Español"
+  echo "la para el teclado HispanoAmericano"
+  echo "us para el teclado EstadoUnidense"
+  echo "uk para el teclado Britanico"
+  echo ''
+  echo 'col para el teclado Colemak"'
+  echo ''
+  echo "des para el teclado Dvorak-Español"
+  echo "dla para el teclado Dvorak-HispanoAmericano"
+  echo "dus para el teclado Dvorak-EstadoUnidense"
+  echo "duk para el teclado Britanico"
+  echo "dpr para el teclado Programmer Dvorak"
+
+  read LANGUAGE
+
+  case $LANGUAGE in
+    es|ES) loadkeys es
+        break;;
+    la|LA) loadkeys la-latin1
+        break;;
+    us|US) loadkeys us
+        break;;
+    uk|UK) loadkeys uk
+        break;;
+
+
+    col|COL) loadkeys colemak
+        break;;
+
+
+    des|DES) loadkeys dvorak-es
+        break;;
+    dla|DLA) loadkeys dvorak-la
+        break;;
+    des|DES) loadkeys dvorak
+        break;;
+    duk|DUK) loadkeys dvorak-uk
+        break;;
+    dpr|DPR) loadkeys dvorak-programmer
+        break;;
+
+
+    *) echo "Respuesta Invalida, porfavor responde bien"
+      echo "Pulsa Enter para Contunuar"
+      read input;;
+  esac
+done
 mount -o remount,size=2G /run/archiso/cowspace
 echo '/run/archiso/cowspace ampliada a 2GB'
 pacman -Syy --noconfirm git
 echo 'git instalado'
-git clone https://github.com/DEPBugger/Arch_Barebone_Install.git --branch test
+git clone https://github.com/DEPBugger/Arch_Barebone_Install.git --branch JackTest
 echo 'Repositorio clonado'
 cd Arch_Barebone_Install
 echo 'Se ha entrado en la carpeta del repo'
-# ¿Continuar?
+echo 'Quieres Continuar? [S/N]'
+while true
+		do
+			read input
+			case $input in
+				S|s) break;;
+				N|n) exit 0;;
+				*) echo "Respuesta Invalida, porfavor responde 'Y' para si y 'N' para no [S/N]";;
+			esac
+		done
+echo 'Mirando si hay conexion a internet'
 dhcpcd
 ping -c 3 kernel.org
+echo 'Discos Duros y Particiones reconocidas:'
 lsblk
-# ¿Continuar?
-echo''
+echo 'Quieres Continuar? [S/N]'
+while true
+		do
+			read input
+			case $input in
+				S|s) break;;
+				N|n) exit 0;;
+				*) echo "Respuesta Invalida, porfavor responde 'Y' para si y 'N' para no [S/N]";;
+			esac
+		done
 read -p 'Ahora deberás editar el particionado de tu disco, pulsa Enter cuando estés list@'
 # Añadir espera tras el echo anterior
 # Añadir opción para eliminar la tabla de particiones
 cfdisk /dev/sda
 lsblk
-# ¿Es correcto?
+echo 'Es Correcto? [S/N]'
+while true
+		do
+			read input
+			case $input in
+				S|s) break;;
+				N|n) exit 0;;
+				*) echo "Respuesta Invalida, porfavor responde 'Y' para si y 'N' para no [S/N]";;
+			esac
+		done
 # Añadir opción para editar el /dev/sdXY de los mkfs
 mkfs.vfat -F32 /dev/sda1
 mkfs.ext4 -L 'Arch Linux' /dev/sda2
@@ -64,7 +140,16 @@ mount /dev/sda2 /mnt
 mkdir -p /mnt/boot/efi
 mount /dev/sda1 /mnt/boot/efi
 lsblk
-# ¿Está correcto?
+echo 'Es Correcto? [S/N]'
+while true
+		do
+			read input
+			case $input in
+				S|s) break;;
+				N|n) exit 0;;
+				*) echo "Respuesta Invalida, porfavor responde 'Y' para si y 'N' para no [S/N]";;
+			esac
+		done
 # mount /dev/sda3 /mnt/home
 echo '########---Instalando reflector y actualizando la mirrorlist del live para usar lor mirrors más rápidos---########'
 pacman -Syy reflector --noconfirm
