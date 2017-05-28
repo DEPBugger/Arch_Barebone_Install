@@ -50,8 +50,8 @@ mkfs.ext4 -L 'Arch Linux' /dev/sda2
 # swapon /dev/sda4
 # mkdir /mnt/home
 mount /dev/sda2 /mnt
-mkdir -p /mnt/boot
-mount /dev/sda1 /mnt/boot
+mkdir -p /mnt/boot/efi
+mount /dev/sda1 /mnt/boot/efi
 lsblk
 # ¿Está correcto?
 # mount /dev/sda3 /mnt/home
@@ -144,12 +144,12 @@ echo ''
 git clone https://github.com/munlik/refind-theme-regular.git
 echo ''
 echo 'Clonado el repositorio https://github.com/munlik/refind-theme-regular.git'
-sudo mv refind-theme-regular /boot/EFI/BOOT
+sudo mv refind-theme-regular /boot/boot/EFI/BOOT
 echo ''
 echo 'Colocada la carpeta refind-theme-regular en la ESP'
-sudo rm -rf /boot/EFI/BOOT/refind-theme-regular/{src,.git}
+sudo rm -rf /boot/efi/EFI/BOOT/refind-theme-regular/{src,.git}
 sudo echo '
-include refind-theme-regular/theme.conf' >> /boot/EFI/BOOT/refind.conf
+include refind-theme-regular/theme.conf' >> /boot/efi/EFI/BOOT/refind.conf
 echo 'Cargado refind-theme-regular en refind.conf'
 echo ''
 echo 'Por favor, introduce por última vez la contraseña del usuario vbox'
