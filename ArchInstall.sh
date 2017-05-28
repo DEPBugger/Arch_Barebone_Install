@@ -3,7 +3,7 @@
 #Variables
 LANGUAGE="en"
 USER=`whoami`
-DEBUG="true"
+DEBUG="false"
 LOG="/tmp/ArchInstall"
 
 #TERMINADO y traducido (Solo falta rellenar información en los "echo" con advertencias de que algo puede fallar)
@@ -59,15 +59,15 @@ function PreConfig() {
 			read LANGUAGE
 
 			case $LANGUAGE in
-				es|ES) LANGUAGE=es
+				es|ES) LANGUAGE="es"
 						break;;
-				uk|UK) LANGUAGE=uk
+				uk|UK) LANGUAGE="uk"
 						break;;
-				fr|FR) LANGUAGE=fr
+				fr|FR) LANGUAGE="fr"
 						break;;
-				de|DE) LANGUAGE=de
+				de|DE) LANGUAGE="de"
 						break;;
-				us|US) LANGUAGE=us
+				us|US) LANGUAGE="us"
 						break;;
 				*) echo "Invalid choice, write just es, uk, fr, de or us"
 					echo "Press Enter to continue"
@@ -193,6 +193,7 @@ function ConfDisk() {
 			fdisk -l | grep "Disk /dev/sd"
 			echo ""
 
+			# Cuando hay más de un disco duro el siguiente control pide introducir el objetivo:
 			while true; do
 				echo "Introduce el disco duro objetivo"
 				echo "Por ejemplo: /dev/sda"
