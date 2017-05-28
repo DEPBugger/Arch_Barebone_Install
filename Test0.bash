@@ -87,9 +87,19 @@ echo '########---Instalando reflector y actualizando la mirrorlist del live para
 pacman -Syy reflector --noconfirm
 reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 pacstrap /mnt base base-devel networkmanager net-tools
+while [[ -z ${NEW_USER} ]]; do
+    read -p "Introduzca el nombre del usuario no root que desee para su futuro sistema: " NEW_USER
+    if [[ ${NEW_USER} =~ ^[a-z,0-9]*$ ]] && [[ ${#NEW_USER} -lt 32 ]]; then
+        echo "El nombre de usuario para la nueva instalación será ${NEW_USER}."
+    else
+        echo "Ha introducido carácteres inválidos o demasiados, por favor use sólo minúsculas y/o números hasta 32 caracteres"
+        unset NEW_USER
+    fi
+done
 genfstab -U /mnt >> /mnt/etc/fstab
 cat << EOF > /mnt/Test1.bash
 #!/bin/bash
+NEW_USER="${NEW_USER}"
 echo ArchLinux > /etc/hostname
 echo ''
 echo 'Nombre del host a instalar: ArchLinux'
@@ -115,16 +125,12 @@ echo ''
 echo 'rEFInd instalado y habilitado para el próximo arranque'
 # Editar vbox y poner opción de que el usuario escriba su nombre
 echo ''
-echo 'Creando usuario vbox...'
-useradd -m -g users -G audio,lp,optical,storage,video,wheel,games,power,scanner -s /bin/bash vbox
-echo ''
-echo 'Usuario vbox creado'
-# Editar vbox y poner opción de que el usuario escriba su nombre
-echo ''
-echo 'Introduce la contraseña para el usuario vbox pulsa Enter e introdúcela de nuevo'
-passwd vbox
-echo ''
-echo 'Contraseña del usuario vbox creada correctamente'
+echo "Creando usuario \${NEW_USER}..."
+useradd -m -g users -G audio,lp,optical,storage,video,wheel,games,power,scanner -s /bin/bash \${NEW_USER}
+echo -e "\nUsuario \${NEW_USER} creado"
+echo -e "\nIntroduce la contraseña para el usuario \${NEW_USER} pulsa Enter e introdúcela de nuevo"
+passwd ${NEW_USER}
+echo -e "\nContraseña del usuario \${NEW_USER} creada correctamente"
 sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
 echo ''
 echo 'sudo habilitado'
@@ -150,12 +156,11 @@ echo 'Sistema gráfico básico instalado'
 # Preguntar si está instalando en VirtualBox
 pacman -S virtualbox-guest-modules-arch --noconfirm
 # Preguntar si desea instalar Xfce4 y lxdm (añadir más DE en el futuro)
-# Editar vbox y que use el nombre de usuario creado anteriormente
 # Autointroducir la contraseña que se introdujo antes para el usuario (opcional)
 echo ''
 echo 'A punto de instalar yaourt, Xfce y lxdm y varios extras'
 read -p 'A continuación deberás introducir la contraseña del usuario root en tres ocasiones. Pulsa Enter para continuar'
-su vbox -c 'yaourt -S --noconfirm --needed xdg-user-dirs xfce4 xfce4-goodies lxdm lxdm-themes neofetch zsh git wget curl && xdg-user-dirs-update'
+su ${NEW_USER} -c 'yaourt -S --noconfirm --needed xdg-user-dirs xfce4 xfce4-goodies lxdm lxdm-themes neofetch zsh git wget curl && xdg-user-dirs-update'
 echo ''
 echo 'yaourt Xfce y lxdm y sus extras instalados'
 sed -i '$d' /etc/pacman.conf
@@ -178,10 +183,8 @@ sudo rm -rf /boot/efi/EFI/BOOT/refind-theme-regular/{src,.git}
 sudo echo '
 include refind-theme-regular/theme.conf' >> /boot/efi/EFI/BOOT/refind.conf
 echo 'Cargado refind-theme-regular en refind.conf'
-echo ''
-echo 'Por favor, introduce por última vez la contraseña del usuario vbox'
-echo ''
-echo 'A continuación debería aparecer el archivo Test1.bash acompañado de otros ficheros'
+echo -e "\nPor favor, introduce por última vez la contraseña del usuario ${NEW_USER}"
+echo -e '\nA continuación debería aparecer el archivo Test1.bash acompañado de otros ficheros'
 ls
 rm $0
 echo ''
