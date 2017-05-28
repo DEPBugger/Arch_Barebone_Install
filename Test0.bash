@@ -90,6 +90,7 @@ hwclock --systohc
 # Añadir la opción de meter otras zonas horarias
 sed -i 's/#es_ES.UTF-8 UTF-8/es_ES.UTF-8 UTF-8/' /etc/locale.gen
 echo 'LANG=es_ES.UTF-8' > /etc/locale.conf
+echo ''
 locale-gen
 echo 'KEYMAP=es' > /etc/vconsole.conf
 mkinitcpio -p linux
