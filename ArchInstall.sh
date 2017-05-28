@@ -3,8 +3,8 @@
 #Variables
 LANGUAGE="en"
 USER=`whoami`
-DEBUG="true"
-LOG="/tmp/ArchInstall"
+DEBUG="false"
+LOG="/tmp/ArchInstall.log"
 
 #TERMINADO y traducido (Solo falta rellenar información en los "echo" con advertencias de que algo puede fallar)
 #Function that gives information about the installation process
@@ -59,15 +59,15 @@ function PreConfig() {
 			read LANGUAGE
 
 			case $LANGUAGE in
-				es|ES) LANGUAGE=es
+				es|ES) LANGUAGE="es"
 						break;;
-				uk|UK) LANGUAGE=uk
+				uk|UK) LANGUAGE="uk"
 						break;;
-				fr|FR) LANGUAGE=fr
+				fr|FR) LANGUAGE="fr"
 						break;;
-				de|DE) LANGUAGE=de
+				de|DE) LANGUAGE="de"
 						break;;
-				us|US) LANGUAGE=us
+				us|US) LANGUAGE="us"
 						break;;
 				*) echo "Invalid choice, write just es, uk, fr, de or us"
 					echo "Press Enter to continue"
@@ -177,18 +177,23 @@ function ConfDisk() {
 
 		DISK=`fdisk -l | grep "Disk /dev/sd" | wc -l` #Cantidad de discos en el equipo
 
-		if [ $DISK -eq 1 ]; then
+		if [ $DISK -eq 0 ]; then # En caso de no existir HDD
+			echo "ERROR GRAVE" && echo "Saliendo, no hay disco duro en el equipo" >> $LOG
+			echo "Pulsa INTRO para salir del instalador"
+			read input
+		elif [ $DISK -eq 1 ]; then # En caso de solo tener 1 HDD
 			echo "Solo tienes un disco duro, seleccionando /dev/sda como objetivo"
 			DISK="/dev/sda"
 			echo "Pulsa INTRO para continuar y entrar a cfdisk"
 			read input
 			cfdisk /dev/sda
-		else
+		else # En caso de tener más de 1 HDD
 			echo "En tu equipo tienes $DISK discos duros, son los siguientes:"
 			echo ""
 			fdisk -l | grep "Disk /dev/sd"
 			echo ""
 
+			# Cuando hay más de un disco duro el siguiente control pide introducir el objetivo:
 			while true; do
 				echo "Introduce el disco duro objetivo"
 				echo "Por ejemplo: /dev/sda"
@@ -260,10 +265,6 @@ function PreInstall() {
 	echo '########---Instalando reflector y actualizando la mirrorlist del live---########'
 	pacman -Syy reflector --noconfirm
 	reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-	pacstrap /mnt base base-devel networkmanager net-tools
-	genfstab -U -p /mnt >> /mnt/etc/fstab
-
-
 	#arch-chroot /mnt bash Test2.bash
 }
 
@@ -271,7 +272,8 @@ function ToInstall() {
 	#Comprobar que está bien montado
 
 	#Instalar
-	#cp ~/Arch_Barebone_Install/Test2.bash /mnt
+	pacstrap /mnt base base-devel networkmanager net-tools
+	genfstab -U -p /mnt >> /mnt/etc/fstab
 
 	#Comprobar que la copia se ha realizado correctamente
 	ls /mnt/tmp
@@ -279,18 +281,60 @@ function ToInstall() {
 
 function PostInstall() {
 	##### Elegir la distribución de teclado que tendrá el sistema instalado, en concreto cuando hay que editar el archivo /etc/vconsole.conf (simplemente añadir KEYMAP=X, de nuevo la X será el código de teclado a usar, busca `vconsole` en Test2.bash para ver como va), la idea es preguntar si desea meter la misma distribución de teclado en el sistema instalado que la que haya elegido en el live.
-	echo "Se ha terminado de instalar, ¿desea apagar el equipo?"
-	#Preguntar si o no [s/n]
-	#En caso de si apagar:
-	#poweroff
+	while true; do
+		clear
+		echo "Se ha terminado de instalar, ¿desea apagar el equipo?"
+		echo ""
+
+		read input
+
+		case $input in
+			s|S) poweroff; break;;
+			n|N) exit 0;;
+			*) echo "Opción inválida [s/n]";;
+		esac
+	done
 }
 
-#LLamada a las funciones
-InfoHelp
-PreConfig
-ConfRed
-ConfDisk
-PreInstall
+#LLamada a las funciones, si DEBUG=true se habilita el modo pruebas
+if $DEBUG; then
+	touch $LOG
+	while true; do
+		clear
+		echo "Selecciona la función/módulo/step a comprobar introduciendo el número de opción"
+		echo ""
+		echo "1) Ayuda del principio [InfoHelp]"
+		echo "2) Preconfiguraciones [PreConfig]"
+		echo "3) Configuración de red [ConfRed]"
+		echo "4) Particionar y Formatear [ConfDisk]"
+		echo "5) Detalles antes de instalar [PreInstall]"
+		echo "6) Instalando sistema [ToInstall]"
+		echo "7) Configuraciones Post-Instalación [PostInstall]"
+		echo "0) Salir"
+		echo ""
+
+		read input
+
+		case $input in
+			0) break;;
+			1) InfoHelp;;
+			2) PreConfig;;
+			3) ConfRed;;
+			4) ConfDisk;;
+			5) PreInstall;;
+			6) ToInstall;;
+			7) PostInstall;;
+			*) echo "Opción inválida, elige una opción de las anteriores";;
+		esac
+	done
+else
+	InfoHelp
+	PreConfig
+	ConfRed
+	ConfDisk
+	PreInstall
+	ToInstall
+	PostInstall
+fi
 
 exit 0
-
