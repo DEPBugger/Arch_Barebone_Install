@@ -15,8 +15,8 @@ echo '
                 `+oooo:                   
                `+oooooo:                  Please have a seat and enjoy seeing lot of
                -+oooooo+:                 text lines appearing on your screen and
-             `/:-:++oooo+:                write your password or say yes or no when required.
-            `/++++/+++++++:               
+             `/:-:++oooo+:                write your password or say yes or no when
+            `/++++/+++++++:               required.
            `/++++++++++++++:              
           `/+++ooooooooooooo/`            
          ./ooosssso++osssssso+`           
@@ -30,13 +30,17 @@ echo '
  .`                                 `/    '
 read -p 'Press Enter to begin installation process.'
 mount -o remount,size=2G /run/archiso/cowspace
+echo ''
 echo '/run/archiso/cowspace ampliada a 2GB'
 pacman -Syy --noconfirm git
+echo ''
 echo 'git instalado'
 git clone https://github.com/DEPBugger/Arch_Barebone_Install.git
+echo ''
 echo 'Repositorio clonado'
 cd Arch_Barebone_Install
-echo 'Se ha entrado en la carpeta del repo'
+echo ''
+echo 'Se ha entrado en la carpeta del repositorio'
 # ¿Continuar?
 dhcpcd
 ping -c 3 kernel.org
@@ -62,12 +66,13 @@ mount /dev/sda1 /mnt/boot/efi
 lsblk
 # ¿Está correcto?
 # mount /dev/sda3 /mnt/home
+echo ''
 echo '########---Instalando reflector y actualizando la mirrorlist del live para usar lor mirrors más rápidos---########'
 pacman -Syy reflector --noconfirm
 reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 pacstrap /mnt base base-devel networkmanager net-tools
 genfstab -U /mnt >> /mnt/etc/fstab
-cat <<EOF > /mnt/Test1.bash
+cat << EOF > /mnt/Test1.bash
 #!/bin/bash
 echo ArchLinux > /etc/hostname
 echo ''
@@ -78,9 +83,9 @@ passwd
 echo ''
 echo 'Contraseña del usuario root creada correctamente'
 ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime
-hwclock --systohc
 echo ''
 echo 'Zona horaria cambiada a Madrid'
+hwclock --systohc
 # Añadir la opción de meter otras zonas horarias
 sed -i 's/#es_ES.UTF-8 UTF-8/es_ES.UTF-8 UTF-8/' /etc/locale.gen
 echo 'LANG=es_ES.UTF-8' > /etc/locale.conf
@@ -93,7 +98,7 @@ echo ''
 echo 'rEFInd instalado y habilitado para el próximo arranque'
 # Editar vbox y poner opción de que el usuario escriba su nombre
 echo ''
-echo 'Creando usuario vbox'
+echo 'Creando usuario vbox...'
 useradd -m -g users -G audio,lp,optical,storage,video,wheel,games,power,scanner -s /bin/bash vbox
 echo ''
 echo 'Usuario vbox creado'
@@ -107,6 +112,7 @@ sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
 echo ''
 echo 'sudo habilitado'
 sed -i 's/#Color/Color\nILoveCandy/' /etc/pacman.conf
+echo ''
 echo 'Easter egg habilitado'
 sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 echo ''
@@ -142,6 +148,7 @@ sed -i '$d' /etc/pacman.conf
 sed -i '$d' /etc/pacman.conf
 echo ''
 echo 'Repositorio [archlinuxfr] eliminado'
+echo ''
 systemctl enable lxdm.service
 systemctl enable NetworkManager.service
 echo ''
@@ -156,6 +163,7 @@ ls /mnt
 arch-chroot /mnt bash Test1.bash
 ############-----Ahora ejecutará el siguiente script-----############
 ############-----Todo lo que hay a continuación se ejecuta después de que Test1.bash haya finalizado-----############
+pkill dhcpcd
 echo ''
 umount -R /mnt
 echo 'A continuación se reiniciará el ordenador, por favor extrae el medio de instalación de Arch Linux (memoria USB, DVD, CD...) en cuanto desaparezcan estas letras.'
