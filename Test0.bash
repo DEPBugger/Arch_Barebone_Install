@@ -88,11 +88,11 @@ pacman -Syy reflector --noconfirm
 reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 pacstrap /mnt base base-devel networkmanager net-tools
 while [[ -z ${NEW_USER} ]]; do
-    read -p "Introduzca el nombre del usuario no root que desee para su futuro sistema: " NEW_USER
+    read -p 'Introduzca el nombre del usuario no root que desee para su futuro sistema: ' NEW_USER
     if [[ ${NEW_USER} =~ ^[a-z,0-9]*$ ]] && [[ ${#NEW_USER} -lt 32 ]]; then
-        echo "El nombre de usuario para la nueva instalación será ${NEW_USER}."
+        echo "El nombre de usuario no root para la nueva instalación será ${NEW_USER}."
     else
-        echo "Ha introducido carácteres inválidos o demasiados, por favor use sólo minúsculas y/o números hasta 32 caracteres"
+        echo 'Ha introducido caracteres inválidos o demasiados, por favor use sólo minúsculas y/o números hasta 32 caracteres'
         unset NEW_USER
     fi
 done
@@ -100,6 +100,8 @@ genfstab -U /mnt >> /mnt/etc/fstab
 cat << EOF > /mnt/Test1.bash
 #!/bin/bash
 NEW_USER="${NEW_USER}"
+echo 'Se ha entrado en chroot'
+echo ''
 echo ArchLinux > /etc/hostname
 echo ''
 echo 'Nombre del host a instalar: ArchLinux'
@@ -125,12 +127,15 @@ echo ''
 echo 'rEFInd instalado y habilitado para el próximo arranque'
 # Editar vbox y poner opción de que el usuario escriba su nombre
 echo ''
-echo "Creando usuario \${NEW_USER}..."
+echo 'Creando usuario ${NEW_USER}...'
 useradd -m -g users -G audio,lp,optical,storage,video,wheel,games,power,scanner -s /bin/bash \${NEW_USER}
-echo -e "\nUsuario \${NEW_USER} creado"
-echo -e "\nIntroduce la contraseña para el usuario \${NEW_USER} pulsa Enter e introdúcela de nuevo"
+echo ''
+echo 'Usuario ${NEW_USER} creado y añadido a grupos varios'
+echo ''
+echo 'Introduce la contraseña para el usuario ${NEW_USER} pulsa Enter e introdúcela de nuevo'
 passwd ${NEW_USER}
-echo -e "\nContraseña del usuario \${NEW_USER} creada correctamente"
+echo ''
+echo 'Contraseña del usuario ${NEW_USER} creada correctamente'
 sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
 echo ''
 echo 'sudo habilitado'
@@ -183,8 +188,8 @@ sudo rm -rf /boot/efi/EFI/BOOT/refind-theme-regular/{src,.git}
 sudo echo '
 include refind-theme-regular/theme.conf' >> /boot/efi/EFI/BOOT/refind.conf
 echo 'Cargado refind-theme-regular en refind.conf'
-echo -e "\nPor favor, introduce por última vez la contraseña del usuario ${NEW_USER}"
-echo -e '\nA continuación debería aparecer el archivo Test1.bash acompañado de otros ficheros'
+echo 'Por favor, introduce por última vez la contraseña del usuario ${NEW_USER}'
+echo 'A continuación debería aparecer el archivo Test1.bash acompañado de otros ficheros'
 ls
 rm $0
 echo ''
