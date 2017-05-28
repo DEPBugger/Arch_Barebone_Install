@@ -44,41 +44,49 @@ while true; do
   echo "des para el teclado Dvorak-Español"
   echo "dla para el teclado Dvorak-HispanoAmericano"
   echo "dus para el teclado Dvorak-EstadoUnidense"
-  echo "duk para el teclado Britanico"
+  echo "duk para el teclado Dvorak-Britanico"
   echo "dpr para el teclado Programmer Dvorak"
 
   read LANGUAGE
 
   case $LANGUAGE in
     es|ES) loadkeys es
+    echo 'Teclado seleccionado: Español'
         break;;
     la|LA) loadkeys la-latin1
+    echo 'Teclado seleccionado: HispanoAmericano'
         break;;
     us|US) loadkeys us
+    echo 'Teclado seleccionado: EstadoUnidense'
         break;;
     uk|UK) loadkeys uk
+    echo 'Teclado seleccionado: Britanico'
         break;;
 
 
     col|COL) loadkeys colemak
+    echo 'Teclado seleccionado: Colemak'
         break;;
 
 
     des|DES) loadkeys dvorak-es
+    echo 'Teclado seleccionado: Dvorak-Español'
         break;;
     dla|DLA) loadkeys dvorak-la
+    echo 'Teclado seleccionado: Dvorak-HispanoAmericano'
         break;;
     des|DES) loadkeys dvorak
+    echo 'Teclado seleccionado: Dvorak-EstadoUnidense'
         break;;
     duk|DUK) loadkeys dvorak-uk
+    echo 'Teclado seleccionado: Dvorak-Britanico'
         break;;
     dpr|DPR) loadkeys dvorak-programmer
+    echo 'Teclado seleccionado: Programmer Dvorak'
         break;;
 
 
-    *) echo "Respuesta Invalida, porfavor responde bien"
-      echo "Pulsa Enter para Contunuar"
-      read input;;
+    *) echo "Respuesta Invalida, porfavor responde bien";;
   esac
 done
 mount -o remount,size=2G /run/archiso/cowspace
