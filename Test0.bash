@@ -144,7 +144,7 @@ echo ''
 git clone https://github.com/munlik/refind-theme-regular.git
 echo ''
 echo 'Clonado el repositorio https://github.com/munlik/refind-theme-regular.git'
-sudo mv refind-theme-regular /boot/boot/EFI/BOOT
+sudo mv refind-theme-regular /boot/efi/EFI/BOOT
 echo ''
 echo 'Colocada la carpeta refind-theme-regular en la ESP'
 sudo rm -rf /boot/efi/EFI/BOOT/refind-theme-regular/{src,.git}
