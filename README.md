@@ -1,4 +1,4 @@
-# ![Proyect Logo](logo.jpg) Arch_Barebone_Install
+# ![Proyect Logo](logo.png) Arch_Barebone_Install
 
 ## English:
 - Once Arch Linux live (UEFI mode) had booted up just run this command in order to download the first script and start the install process: 
@@ -15,6 +15,6 @@ wget git.io/vHmpr && bash vHmpr
 wget git.io/vHmpr && bash vHmpr`
 ```
 - En el siguiente link puedes ver qué hace el comando anterior (contraseña del vídeo: bash): https://vimeo.com/219239150
-- Nota: Ten en cuenta que para poner el teclado en español debes ejecutar `loadkeys es` antes de empezar la instalación.
+- Nota: Ten en cuenta que para poner el teclado en español debes ejecutar `loadkeys es` (para teclado español) o `loadkeys la-latin1``(para teclados latinoamericanos) antes de empezar la instalación.
 - Los nombres de los archivos son provisionales.
 - El archivo ArchInstall.sh está en desarrollo y aspira a optimizar y mejorar todo lo que hace Test0.bash.
