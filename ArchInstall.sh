@@ -5,6 +5,8 @@
 ############################
 source ./infohelp.sh
 source ./preconfig.sh
+source ./confred.sh
+source ./confdisk.sh
 
 ############################
 ##   Constantes Colores   ##
