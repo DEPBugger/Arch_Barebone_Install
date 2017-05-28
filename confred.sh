@@ -13,6 +13,11 @@ function ConfRed() {
 
 	# Función para comprobar la red
 	function correctRed() {
+
+		PIN1="ping -c1 www.archlinux.org"
+		PIN2=""
+		PIN3=""
+
 		if $PING1 || $PING2 || $PING3; then
 			CORRECT_RED=true
 		fi
