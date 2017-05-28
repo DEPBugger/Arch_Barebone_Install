@@ -1,7 +1,7 @@
 #!/bin/bash
 echo ArchLinux > /etc/hostname
 echo 'Nombre del host a instalar: ArchLinux'
-echo 'Introduce la contraseña del usuario root pulsa enter e introdúcela de nuevo'
+echo 'Introduce la contraseña del usuario root pulsa Enter e introdúcela de nuevo'
 passwd
 echo 'Contraseña del usuario root creada correctamente'
 ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime
@@ -21,7 +21,7 @@ echo 'Creando usuario vbox'
 useradd -m -g users -G audio,lp,optical,storage,video,wheel,games,power,scanner -s /bin/bash vbox
 echo 'Usuario vbox creado'
 # Editar vbox y poner opción de que el usuario escriba su nombre
-echo 'Introduzca la contraseña para el usuario vbox'
+echo 'Introduce la contraseña para el usuario vbox pulsa Enter e introdúcela de nuevo'
 passwd vbox
 echo 'Contraseña del usuario vbox creada correctamente'
 sed -i 's/# %wheel ALL=(ALL) ALL/%wheel ALL=(ALL) ALL/' /etc/sudoers
@@ -36,20 +36,21 @@ SigLevel = Never
 Server = http://repo.archlinux.fr/$'arch'' >> /etc/pacman.conf
 echo 'Añadido repositorio para instalar yaourt (se eliminará más tarde)'
 pacman -Syy --noconfirm --needed yaourt xorg xorg-server xorg-xinit mesa mesa-demos xf86-video-vesa xf86-video-intel firefox terminator geany
+echo''
 echo 'Sistema gráfico básico instalado'
+echo ''
 # Preguntar si está instalando en VirtualBox
 pacman -S virtualbox-guest-modules-arch --noconfirm
-# Eliminar el repositorio [archlinuxfr] de pacman.conf
 # Preguntar si desea instalar Xfce4 y lxdm (añadir más DE en el futuro)
 # Editar vbox y que use el nombre de usuario creado anteriormente
-# Autointroducir la contraseña que se introdujo antes para el usuario
+# Autointroducir la contraseña que se introdujo antes para el usuario (opcional)
 echo ''
 echo ''
 echo ''
 echo ''
 echo ''
 echo ''
-echo -p 'Instalando yaourt, Xfce y lxdm y varios extras'
+echo 'Instalando yaourt, Xfce y lxdm y varios extras'
 read -p 'A continuación deberás introducir la contraseña del usuario root en tres ocasiones. Pulsa Enter para continuar'
 su vbox -c 'yaourt -S --noconfirm --needed xdg-user-dirs xfce4 xfce4-goodies lxdm lxdm-themes neofetch zsh git wget curl && xdg-user-dirs-update'
 echo 'yaourt Xfce y lxdm y sus extras instalados'

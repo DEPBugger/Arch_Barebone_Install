@@ -2,14 +2,14 @@
 # Este script es solo una prueba, y aunque no lo fuera lo usas bajo tu propio riesgo. No lo uses en tu ordenador real, pruébalo en una máquina virtual.
 # Pensado para computadoras de 64 bits
 clear
-echo "########     ###    ########  ######## ########   #######  ##    ## ########"
-echo "##     ##   ## ##   ##     ## ##       ##     ## ##     ## ###   ## ##      "
-echo "##     ##  ##   ##  ##     ## ##       ##     ## ##     ## ####  ## ##      "
-echo "########  ##     ## ########  ######   ########  ##     ## ## ## ## ######  "
-echo "##     ## ######### ##   ##   ##       ##     ## ##     ## ##  #### ##      "
-echo "##     ## ##     ## ##    ##  ##       ##     ## ##     ## ##   ### ##      "
-echo "########  ##     ## ##     ## ######## ########   #######  ##    ## ########"
 echo '
+########     ###    ########  ######## ########   #######  ##    ## ########
+##     ##   ## ##   ##     ## ##       ##     ## ##     ## ###   ## ##
+##     ##  ##   ##  ##     ## ##       ##     ## ##     ## ####  ## ##
+########  ##     ## ########  ######   ########  ##     ## ## ## ## ######
+##     ## ######### ##   ##   ##       ##     ## ##     ## ##  #### ##
+##     ## ##     ## ##    ##  ##       ##     ## ##     ## ##   ### ##
+########  ##     ## ##     ## ######## ########   #######  ##    ## ########
                    -`                     Welcome to an awesome Arch install script
                   .o+`                    This script will install Arch Linux in a
                  `ooo/                    very comfortable way for you.
@@ -45,8 +45,8 @@ dhcpcd
 ping -c 3 kernel.org
 lsblk
 # ¿Continuar?
+echo''
 read -p 'Ahora deberás editar el particionado de tu disco, pulsa Enter cuando estés list@'
-# echo 'Pulsa enter cuando estés list@'
 # Añadir espera tras el echo anterior
 # Añadir opción para eliminar la tabla de particiones
 cfdisk /dev/sda
@@ -75,6 +75,7 @@ ls /mnt
 arch-chroot /mnt bash Test1.bash
 ############-----Ahora ejecutará el siguiente script-----############
 ############-----Todo lo que hay a continuación se ejecuta después de que Test1.bash haya finalizado-----############
+echo ''
 umount -R /mnt
 echo 'A continuación se reiniciará el ordenador, por favor extrae el medio de instalación de Arch Linux (memoria USB, DVD, CD...) en cuanto desaparezcan estas letras.'
 read -p 'Pulsa Enter cuando hayas leído y comprendido el mensaje anterior.'
