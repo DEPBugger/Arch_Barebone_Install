@@ -1,7 +1,7 @@
 #### TERMINADO (Falta comprobar configuración de red)
 function PreConfig() {
 	clear
-	touch $LOG #Creates log file
+	touch $LOG 2>> /dev/null # Creates log file
 
 	if [ ! -w $LOG ]; then #Checks that it is possible to write to the log file
 		echo "Error creating temporary file"
