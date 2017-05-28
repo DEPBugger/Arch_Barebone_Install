@@ -1,10 +1,13 @@
 function Start() {
     echo "Bienvenido al instalador de Arch Linux."    
     
+    # Compruebo si existe un archivo de configuración.
     FIND=$(find . -name arch.conf | wc -l) 
     if [ $FIND -eq 1 ]
     then
-         echo "Hemos detectado que tiene un archivo de configuración. ¿Afirmativo? [Y/n]"
+        echo "Hemos detectado que tiene un archivo de configuración. Presione una tecla para empezar la instalación."
+        read
+        Archivo
     else
         echo "No hemos encontrado ningún archivo de configuración. Si lo tiene, cambie su nombre por \"arch.conf\" y ejecute de nuevo el script. Si no lo tiene, pulse cualquier tecla para empezar."
         read
@@ -22,6 +25,10 @@ function Start() {
 
 function Preguntas() {
     echo "Preguntas"
+}
+
+function Archivo() {
+    echo "Archivo"
 }
 
 Start
