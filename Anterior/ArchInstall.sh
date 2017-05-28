@@ -316,13 +316,14 @@ if $DEBUG; then
 		clear
 		echo "Selecciona la función/módulo/step a comprobar introduciendo el número de opción"
 		echo ""
-		echo "1) Ayuda del principio [InfoHelp]"
-		echo "2) Preconfiguraciones [PreConfig]"
-		echo "3) Configuración de red [ConfRed]"
-		echo "4) Particionar y Formatear [ConfDisk]"
-		echo "5) Detalles antes de instalar [PreInstall]"
-		echo "6) Instalando sistema [ToInstall]"
-		echo "7) Configuraciones Post-Instalación [PostInstall]"
+		echo "1) Inicio, entrada de variables [Start]"
+		echo "2) Ayuda del principio [InfoHelp]"
+		echo "3) Preconfiguraciones [PreConfig]"
+		echo "4) Configuración de red [ConfRed]"
+		echo "5) Particionar y Formatear [ConfDisk]"
+		echo "6) Detalles antes de instalar [PreInstall]"
+		echo "7) Instalando sistema [ToInstall]"
+		echo "8) Configuraciones Post-Instalación [PostInstall]"
 		echo "0) Salir"
 		echo ""
 
@@ -330,17 +331,19 @@ if $DEBUG; then
 
 		case $input in
 			0) break;;
-			1) InfoHelp;;
-			2) PreConfig;;
-			3) ConfRed;;
-			4) ConfDisk;;
-			5) PreInstall;;
-			6) ToInstall;;
-			7) PostInstall;;
+			1) Start;;
+			2) InfoHelp;;
+			3) PreConfig;;
+			4) ConfRed;;
+			5) ConfDisk;;
+			6) PreInstall;;
+			7) ToInstall;;
+			8) PostInstall;;
 			*) echo "Opción inválida, elige una opción de las anteriores";;
 		esac
 	done
 else
+	Start
 	InfoHelp
 	PreConfig
 	ConfRed
