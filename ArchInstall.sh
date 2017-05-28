@@ -25,8 +25,8 @@ LOG="/tmp/ArchInstall.log"
 ############################
 ##       IMPORTADOS       ##
 ############################
-source ./start.sh
 source ./infohelp.sh
+source ./start.sh
 source ./preconfig.sh
 source ./confred.sh
 source ./confdisk.sh
@@ -45,8 +45,8 @@ if $DEBUG; then
 		clear
 		echo "Selecciona la función/módulo/step a comprobar introduciendo el número de opción"
 		echo ""
-		echo "1) Inicio, entrada de variables [Start]"
-		echo "2) Ayuda del principio [InfoHelp]"
+		echo "1) Ayuda del principio [InfoHelp]"
+		echo "2) Inicio, entrada de variables [Start]"
 		echo "3) Preconfiguraciones [PreConfig]"
 		echo "4) Configuración de red [ConfRed]"
 		echo "5) Particionar y Formatear [ConfDisk]"
@@ -60,8 +60,8 @@ if $DEBUG; then
 
 		case $input in
 			0) break;;
-			1) Start;;
-			2) InfoHelp;;
+			1) InfoHelp;;
+			2) Start;;
 			3) PreConfig;;
 			4) ConfRed;;
 			5) ConfDisk;;
@@ -72,8 +72,8 @@ if $DEBUG; then
 		esac
 	done
 else
-	Start
 	InfoHelp
+	Start
 	PreConfig
 	ConfRed
 	ConfDisk
