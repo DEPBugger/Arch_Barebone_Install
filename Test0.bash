@@ -61,8 +61,8 @@ mkfs.ext4 -L 'Arch Linux' /dev/sda2
 # swapon /dev/sda4
 # mkdir /mnt/home
 mount /dev/sda2 /mnt
-mkdir -p /mnt/boot/efi
-mount /dev/sda1 /mnt/boot/efi
+mkdir -p /mnt/boot
+mount /dev/sda1 /mnt/boot
 lsblk
 # ¿Está correcto?
 # mount /dev/sda3 /mnt/home
@@ -132,11 +132,6 @@ pacman -S virtualbox-guest-modules-arch --noconfirm
 # Editar vbox y que use el nombre de usuario creado anteriormente
 # Autointroducir la contraseña que se introdujo antes para el usuario (opcional)
 echo ''
-echo ''
-echo ''
-echo ''
-echo ''
-echo ''
 echo 'A punto de instalar yaourt, Xfce y lxdm y varios extras'
 read -p 'A continuación deberás introducir la contraseña del usuario root en tres ocasiones. Pulsa Enter para continuar'
 su vbox -c 'yaourt -S --noconfirm --needed xdg-user-dirs xfce4 xfce4-goodies lxdm lxdm-themes neofetch zsh git wget curl && xdg-user-dirs-update'
@@ -151,6 +146,23 @@ echo 'Repositorio [archlinuxfr] eliminado'
 echo ''
 systemctl enable lxdm.service
 systemctl enable NetworkManager.service
+echo''
+git clone https://github.com/munlik/refind-theme-regular.git
+echo ''
+echo 'Clonado el repositorio https://github.com/munlik/refind-theme-regular.git'
+echo ''
+echo 'A continuación introduce la contraseña del usuario vbox'
+sudo mv refind-theme-regular /boot/EFI/BOOT
+echo ''
+echo 'Colocada la carpeta refind-theme-regular en la ESP'
+echo ''
+echo 'Introduce de nuevo la contraseña del usuario vbox'
+sudo rm -rf /boot/EFI/BOOT/refind-theme-regular/{src,.git}
+sudo echo '
+include refind-theme-regular/theme.conf' >> /boot/EFI/BOOT/refind.conf
+echo 'Cargado refind-theme-regular en refind.conf'
+echo ''
+echo 'Por favor, introduce por última vez la contraseña del usuario vbox'
 echo ''
 echo 'A continuación debería aparecer el archivo Test1.bash acompañado de otros ficheros'
 ls
