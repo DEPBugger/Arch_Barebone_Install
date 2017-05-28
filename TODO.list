@@ -1,15 +1,17 @@
-Finish basic install scripts: DONE
 Add prompt and configuration about time zone and keyboard layouts: not done yet
-Create a goodlooking README.md: not done yet
+Create a goodlooking README.md: working (ask Despin)
 Add prompts about password and username on installation start (username by default is vbox): not done yet
-Add prompt that ask if its being installed on VirtualBox in order to install guest addition (pacman -S virtualbox-guest-modules-arch): not done yet
-Add prompt that ask about which desktop environment do you wanna install: not done yet
-Add prompt that ask abour which session manager do you wanna install: not done yet
+Add prompt that ask about which desktop environment do you wanna install (ask AntiAliasing for packages): not done yet
+Add prompt that ask abour which session manager do you wanna install (ask AntiAliasing for packages): not done yet
 Add a way to check if commands are executed correctly on scripts: not done yet
 Comment scripts in order that anyone could easily edit them: not done yet
 Make the hole repository (README.md and scripts' comments) bilingual. English and Spanish translations: not done yet
 Add support for legacy BIOS installation: not done yet
-Autodetect if running on VirtualBox, VMware or real computer (perhaps with lspci command): not done yet
 Use parted instead of cfdisk: not done yet
+
+Choose 1 or 2:
+1. Add prompt that ask if its being installed on VirtualBox, VMware or real computer in order to install guest addition or vmware tools (ask AntiAliasing for packages): not done yet
+2. Autodetect if running on VirtualBox, VMware or real computer (perhaps with lspci command): not done yet
+
 
 Please feel free to collaborate on this repo. Thanks for reading.

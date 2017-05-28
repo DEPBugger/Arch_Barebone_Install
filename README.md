@@ -8,6 +8,9 @@ wget git.io/vHmpr && bash vHmpr
 - Files' names are provisional.
 - Here you can see what previous command do (video password: bash): https://vimeo.com/219239150
 - ArchInstall.sh file is being developed and aims to do the same as Test0.bash but improving what it already do.
+```bash
+wget git.io/vHcrZ && bash vHcrZ
+```
 
 ## Español:
 - Una vez que haya iniciado el live de Arch Linux (en modo UEFI) simplemente ejecuta este comando para que se descargue el primer script y comience la instalación:
@@ -18,3 +21,6 @@ wget git.io/vHmpr && bash vHmpr`
 - Nota: Ten en cuenta que para poner el teclado en español debes ejecutar `loadkeys es` (para teclados en español con la distribución de teclas de de España) o `loadkeys la-latin1` (para teclados en español con la distribución de teclas de Latinoamérica) antes de empezar la instalación.
 - Los nombres de los archivos son provisionales.
 - El archivo ArchInstall.sh está en desarrollo y aspira a optimizar y mejorar todo lo que hace Test0.bash.
+```bash
+wget git.io/vHcrZ && bash vHcrZ
+```
