@@ -5,7 +5,11 @@ function Start() {
     FIND=$(find . -name arch.conf | wc -l) 
     if [ $FIND -eq 1 ]
     then
-        echo "Hemos detectado que tiene un archivo de configuración. Presione una tecla para empezar la instalación."
+        echo "Hemos detectado que tiene un archivo de configuración."
+        echo ""
+        cat arch.conf
+        echo ""
+        echo  "Presione una tecla para empezar la instalación."
         read
         Archivo
     else
