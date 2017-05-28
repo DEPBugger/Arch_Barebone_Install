@@ -7,7 +7,6 @@ Add a way to check if commands are executed correctly on scripts: not done yet
 Comment scripts in order that anyone could easily edit them: not done yet
 Make the hole repository (README.md and scripts' comments) bilingual. English and Spanish translations: not done yet
 Add support for legacy BIOS installation: not done yet
-Use parted instead of cfdisk: not done yet
 
 Choose 1 or 2:
 1. Add prompt that ask if its being installed on VirtualBox, VMware or real computer in order to install guest addition or vmware tools (ask AntiAliasing for packages): not done yet
