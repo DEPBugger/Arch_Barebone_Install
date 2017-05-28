@@ -31,20 +31,45 @@ echo '
 read -p 'Press Enter to begin installation process.'
 mount -o remount,size=2G /run/archiso/cowspace
 echo ''
+echo '/run/archiso/cowspace ampliada a 2GB'
+echo''
 dhcpcd
+timedatectl set-ntp true
+echo''
 ping -c 3 kernel.org
+echo ''
 lsblk
 # ¿Continuar?
 echo ''
-read -p 'Ahora deberás editar el particionado de tu disco, pulsa Enter cuando estés list@'
+read -p 'Ahora se particionará tu disco, pulsa Enter cuando estés list@'
 # Añadir espera tras el echo anterior
 # Añadir opción para eliminar la tabla de particiones
-cfdisk /dev/sda
+gdisk << EOF
+/dev/sda
+n
+1
+
+512M
+EF00
+n
+2
+
+
+8300
+w
+Y
+EOF
+echo ''
+echo 'Tabla de particiones lista. Ha quedado como se ve a continuación:'
 lsblk
 # ¿Es correcto?
 # Añadir opción para editar el /dev/sdXY de los mkfs
+echo ''
 mkfs.vfat -F32 /dev/sda1
 mkfs.ext4 -L 'Arch Linux' /dev/sda2
+echo ''
+echo 'Particiones formateadas, se muestran a continuación:'
+lsblk -f
 # mkfs.ext4 -L 'home' /dev/sda3
 # mkswap /dev/sda4
 # swapon /dev/sda4
@@ -52,7 +77,9 @@ mkfs.ext4 -L 'Arch Linux' /dev/sda2
 mount /dev/sda2 /mnt
 mkdir -p /mnt/boot/efi
 mount /dev/sda1 /mnt/boot/efi
-lsblk
+echo ''
+echo 'Particiones montadas, se muestran a continuación:'
+lsblk -f
 # ¿Está correcto?
 # mount /dev/sda3 /mnt/home
 echo ''
