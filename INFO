@@ -1,0 +1,52 @@
+INFORMACIÓN IMPORTANTE REFERENTE AL PROYECTO:
+
+Bienvenidos seáis todos, aquí el link del repo, leeros el README.md y el TODO.list antes de nada:
+https://github.com/DEPBugger/Arch_Barebone_Install
+
+Id contando por aquí todo lo que se os ocurra y los cambios guays que hagáis. Se aceptan sugerencias de cualquier tipo, desde ortografía en la instalación hasta cambiarle el nombre al repo (el de ahora no me gusta mucho pero es el que hay de momento).
+Las ideas que nos molen y tengamos que hacer se añadirán en inglés al archivo TODO.list
+Las anotaciones y cosillas que tengamos que recordar se añadiran al notas.txt en español ya que será sólo para nosotros
+
+IMPORTANTE: por favor antes de entrar a tocar el master cread una branch que tenga el nombre UserTests siendo User vuestro nick para que cada uno haga sus push en su rama y después sea más fácil integrar y seguir los cambios a master, el único que haga merges seré yo o alguien a quien le de permiso en un momento concreto, espero que lo entendais
+
+Herramientas que os pueden ser útiles:
+bpaste.net
+Ghostbin.com
+Pastebin.com
+
+🐧🐙🐧🐙🐧🐙🐧🐙🐧🐙🐧🐙
+
+Último vídeo de demostración del Test0.bash:
+vimeo.com/219239150
+contraseña: bash (para verlo desde el reproductor de telegram si no podéis abrir el teclado escribid bash en un chat normal, copiadlo y en el video cuando pida la contraseña pegadlo)
+
+🐧🐙🐧🐙🐧🐙🐧🐙🐧🐙🐧🐙
+
+Bueno, propongo comenzar el script metiendo todas las variables en global. Al inicio del script que pregunte: cargar archivo de configuraciones o continuar sin él
+
+El arcivo de configuraciones tendrá un formato similar a este:
+
+usuario:pepito
+efi:/dev/sda1
+root:/dev/sda2
+boot:
+home:
+software: programa1 programa2 program3...
+GUI:XFCE
+
+Si el usuario elige archivo de configuración, se asigna valor a las variables con "grep" y "cut" así: cat archivo.conf | cut -d ":" -f2
+
+Se comprobarían valores válidos y en caso contrario aviso de que es inválido el archivo de configuración (por ejemplo tener valores nulos en campos fundamentales).
+
+Si se decide continuar sin archivo de configuración te hace las preguntas, y al terminar te pregunta si deseas guardarlo en formato archivo de configuración.
+
+🐧🐙🐧🐙🐧🐙🐧🐙🐧🐙🐧🐙
+
+El ArchInstall.sh está enfocado a instalar Arch Linux preguntando sobre ciertas configuraciones y opciones al principio de lanzarse el script y además habrá un Test0.bash que será para instalar Arch Linux a puto saco sin ninguna pregunta pero que el usuario deberá editar a mano antes de lanzarlo en el live para que se instale según sus gustos.
+
+Como habréis deducido el ArchInstall.sh está enfocado a gente que apenas sabe lo básico y que necesite una instalación guiada por lo tanto no le sería útil mirar el código y por eso el script puede contener funciones y características "avanzadas" del bash scripting sin problemas.
+Al contrario, el Test0.bash está enfocado a usuarios que sepan instalar Arch y quizás deban instalarlo en varias máquinas o simplemente no quieran escribir tanto comando por eso utiliza una sintaxis muy simple compuesta básicamente por comandos, para que el script sea fácilmente editable por dicho usuario a su gusto.
+
+🐧🐙🐧🐙🐧🐙🐧🐙🐧🐙🐧🐙
+
+Cualquier duda a @AntiAliasing
