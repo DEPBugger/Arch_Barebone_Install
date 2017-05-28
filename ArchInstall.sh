@@ -305,6 +305,22 @@ if [ DEBUG ]; then
 		echo "5) Detalles antes de instalar [PreInstall]"
 		echo "6) Instalando sistema [ToInstall]"
 		echo "7) Configuraciones Post-Instalación [PostInstall]"
+		echo "0) Salir"
+		echo ""
+
+		read input
+
+		case $input in
+			0) break;;
+			1) InfoHelp;;
+			2) PreConfig;;
+			3) ConfRed;;
+			4) ConfDisk;;
+			5) PreInstall;;
+			6) ToInstall;;
+			7) PostInstall;;
+			*) echo "Opción inválida, elige una opción de las anteriores";;
+		esac
 	done
 else
 	InfoHelp
