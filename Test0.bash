@@ -47,7 +47,7 @@ dhcpcd
 ping -c 3 kernel.org
 lsblk
 # ¿Continuar?
-echo''
+echo ''
 read -p 'Ahora deberás editar el particionado de tu disco, pulsa Enter cuando estés list@'
 # Añadir espera tras el echo anterior
 # Añadir opción para eliminar la tabla de particiones
@@ -148,17 +148,13 @@ echo 'Repositorio [archlinuxfr] eliminado'
 echo ''
 systemctl enable lxdm.service
 systemctl enable NetworkManager.service
-echo''
+echo ''
 git clone https://github.com/munlik/refind-theme-regular.git
 echo ''
 echo 'Clonado el repositorio https://github.com/munlik/refind-theme-regular.git'
-echo ''
-echo 'A continuación introduce la contraseña del usuario vbox'
 sudo mv refind-theme-regular /boot/EFI/BOOT
 echo ''
 echo 'Colocada la carpeta refind-theme-regular en la ESP'
-echo ''
-echo 'Introduce de nuevo la contraseña del usuario vbox'
 sudo rm -rf /boot/EFI/BOOT/refind-theme-regular/{src,.git}
 sudo echo '
 include refind-theme-regular/theme.conf' >> /boot/EFI/BOOT/refind.conf
