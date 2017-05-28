@@ -104,7 +104,7 @@ while true
 			case $input in
 				S|s) break;;
 				N|n) exit 0;;
-				*) echo "Respuesta Invalida, porfavor responde 'Y' para si y 'N' para no [S/N]";;
+				*) echo "Respuesta Invalida, porfavor responde 'S' para si y 'N' para no [S/N]";;
 			esac
 		done
 echo 'Mirando si hay conexion a internet'
@@ -119,7 +119,7 @@ while true
 			case $input in
 				S|s) break;;
 				N|n) exit 0;;
-				*) echo "Respuesta Invalida, porfavor responde 'Y' para si y 'N' para no [S/N]";;
+				*) echo "Respuesta Invalida, porfavor responde 'S' para si y 'N' para no [S/N]";;
 			esac
 		done
 read -p 'Ahora deberás editar el particionado de tu disco, pulsa Enter cuando estés list@'
@@ -134,7 +134,7 @@ while true
 			case $input in
 				S|s) break;;
 				N|n) exit 0;;
-				*) echo "Respuesta Invalida, porfavor responde 'Y' para si y 'N' para no [S/N]";;
+				*) echo "Respuesta Invalida, porfavor responde 'S' para si y 'N' para no [S/N]";;
 			esac
 		done
 # Añadir opción para editar el /dev/sdXY de los mkfs
@@ -155,7 +155,7 @@ while true
 			case $input in
 				S|s) break;;
 				N|n) exit 0;;
-				*) echo "Respuesta Invalida, porfavor responde 'Y' para si y 'N' para no [S/N]";;
+				*) echo "Respuesta Invalida, porfavor responde 'S' para si y 'N' para no [S/N]";;
 			esac
 		done
 # mount /dev/sda3 /mnt/home
