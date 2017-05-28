@@ -21,6 +21,17 @@ LOG="/tmp/ArchInstall.log"
 #############################
 ##        FUNCIONES        ##
 #############################
+function conditions() { # Función que comprueba condiciones mínimas para instalar
+	echo "Comprobando condiciones"
+	#Es root
+	#hay HDD
+	#HDD con más de 8GB
+	#Iniciado en UEFI
+	#Enchufado si es portatil
+	#Red
+}
+
+
 
 ############################
 ##       IMPORTADOS       ##
