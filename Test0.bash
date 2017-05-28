@@ -31,18 +31,6 @@ echo '
 read -p 'Press Enter to begin installation process.'
 mount -o remount,size=2G /run/archiso/cowspace
 echo ''
-echo '/run/archiso/cowspace ampliada a 2GB'
-pacman -Syy --noconfirm git
-echo ''
-echo 'git instalado'
-git clone https://github.com/DEPBugger/Arch_Barebone_Install.git
-echo ''
-echo 'Repositorio clonado'
-cd Arch_Barebone_Install
-echo ''
-echo 'Se ha entrado en la carpeta del repositorio'
-# ¿Continuar?
-echo ''
 dhcpcd
 ping -c 3 kernel.org
 lsblk
@@ -125,7 +113,11 @@ SigLevel = Never
 Server = http://repo.archlinux.fr/$'arch'' >> /etc/pacman.conf
 echo ''
 echo 'Añadido repositorio para instalar yaourt (se eliminará más tarde)'
-pacman -Syy --noconfirm --needed yaourt xorg xorg-server xorg-xinit mesa mesa-demos xf86-video-vesa xf86-video-intel firefox terminator geany
+echo ''
+echo '########---Instalando reflector y actualizando la mirrorlist del sistema que se va a instalar para usar lor mirrors más rápidos---########'
+pacman -Syy reflector --noconfirm
+reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+pacman -Sy --noconfirm --needed yaourt xorg xorg-server xorg-xinit mesa mesa-demos xf86-video-vesa xf86-video-intel firefox terminator geany
 echo''
 echo 'Sistema gráfico básico instalado'
 # Preguntar si está instalando en VirtualBox
