@@ -13,12 +13,29 @@ verde="\033[1;32m"
 #############################
 ##   Variables Generales   ##
 #############################
-LANGUAGE="en"
 USER=`whoami`
 DEBUG="false"
 LOG="/tmp/ArchInstall.log"
-EFI="/sys/firmware/efi/efivars"
+EFI="/sys/firmware/efi/efivars" # Si existe, ha iniciado UEFI
 NUM_DISKS=`fdisk -l | tr -s " " | cut -d " " -f 2 | cut -d ":" -f 1 | grep "/dev/sd" | wc -l` # Cantidad de discos SATA
+
+#############################
+## Variables Configuración ##
+#############################
+LANGUAGE="en"
+KEYBOARD=""
+NEW_USER="user"
+HOSTNAME="archPC"
+GPU="" # GPU para instalar Firmware/Drivers/Utilidades (En blanco para no hacer nada)
+GUI="" # Interfaz gráfica que se instalará (En blanco ninguna)
+SOFTWARE="" # Programas a instalar automáticamente
+
+# Punto de montaje para cada partición
+EFI=""
+BOOT=""
+ROOT=""
+HOME=""
+SWAP=""
 
 #############################
 ##        FUNCIONES        ##
@@ -43,8 +60,6 @@ function conditions() { # Función que comprueba condiciones mínimas para insta
 	#Enchufado si es portatil
 	#Red
 }
-
-
 
 ############################
 ##       IMPORTADOS       ##
