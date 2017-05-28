@@ -14,12 +14,15 @@ function ConfRed() {
 	# Función para comprobar la red
 	function correctRed() {
 
-		PIN1="ping -c1 www.archlinux.org"
-		PIN2=""
-		PIN3=""
+		PIN1="`ping -c1 www.archlinux.org 2>> /dev/null >> /dev/null && echo true || echo false`"
+		PIN2="`ping -c1 www.archlinux.org 2>> /dev/null >> /dev/null && echo true || echo false`"
+		PIN3="`ping -c1 www.archlinux.org 2>> /dev/null >> /dev/null && echo true || echo false`"
 
 		if $PING1 || $PING2 || $PING3; then
+			echo "Hay conexión a internet" && echo "Conexión a internet correcta" >> $LOG
 			CORRECT_RED=true
+		else
+			echo "Han fallado 3 pings consecutivos" && echo "Han fallado 3 pings consecutivos" >> $LOG
 		fi
 	}
 
