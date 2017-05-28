@@ -42,6 +42,7 @@ cd Arch_Barebone_Install
 echo ''
 echo 'Se ha entrado en la carpeta del repositorio'
 # ¿Continuar?
+echo ''
 dhcpcd
 ping -c 3 kernel.org
 lsblk
