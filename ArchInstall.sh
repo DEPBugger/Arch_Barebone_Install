@@ -1,18 +1,6 @@
 #!/bin/bash
 
 ############################
-##       IMPORTADOS       ##
-############################
-source ./start.sh
-source ./infohelp.sh
-source ./preconfig.sh
-source ./confred.sh
-source ./confdisk.sh
-source ./preinstall.sh
-source ./toinstall.sh
-source ./postinstall.sh
-
-############################
 ##   Constantes Colores   ##
 ############################
 amarillo="\033[1;33m"
@@ -33,6 +21,18 @@ LOG="/tmp/ArchInstall.log"
 #############################
 ##        FUNCIONES        ##
 #############################
+
+############################
+##       IMPORTADOS       ##
+############################
+source ./start.sh
+source ./infohelp.sh
+source ./preconfig.sh
+source ./confred.sh
+source ./confdisk.sh
+source ./preinstall.sh
+source ./toinstall.sh
+source ./postinstall.sh
 
 #############################
 ##        EJECUCIÓN        ##
