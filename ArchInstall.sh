@@ -4,6 +4,7 @@
 ##       IMPORTADOS       ##
 ############################
 source ./infohelp.sh
+source ./preconfig.sh
 
 ############################
 ##   Constantes Colores   ##
