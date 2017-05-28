@@ -4,7 +4,7 @@
 LANGUAGE="en"
 USER=`whoami`
 DEBUG="false"
-LOG="/tmp/ArchInstall"
+LOG="/tmp/ArchInstall.log"
 
 #TERMINADO y traducido (Solo falta rellenar información en los "echo" con advertencias de que algo puede fallar)
 #Function that gives information about the installation process
@@ -290,12 +290,30 @@ function PostInstall() {
 	#poweroff
 }
 
-#LLamada a las funciones
-InfoHelp
-PreConfig
-ConfRed
-ConfDisk
-PreInstall
+#LLamada a las funciones, si DEBUG=true se habilita el modo pruebas
+
+if [ DEBUG ]; then
+	touch $LOG
+	while true; do
+		clear
+		echo "Selecciona la función/módulo/step a comprobar introduciendo el número de opción"
+		echo ""
+		echo "1) Ayuda del principio [InfoHelp]"
+		echo "2) Preconfiguraciones [PreConfig]"
+		echo "3) Configuración de red [ConfRed]"
+		echo "4) Particionar y Formatear [ConfDisk]"
+		echo "5) Detalles antes de instalar [PreInstall]"
+		echo "6) Instalando sistema [ToInstall]"
+		echo "7) Configuraciones Post-Instalación [PostInstall]"
+	done
+else
+	InfoHelp
+	PreConfig
+	ConfRed
+	ConfDisk
+	PreInstall
+	ToInstall
+	PostInstall
+fi
 
 exit 0
-
