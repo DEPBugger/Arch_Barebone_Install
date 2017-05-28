@@ -292,7 +292,7 @@ function PostInstall() {
 
 #LLamada a las funciones, si DEBUG=true se habilita el modo pruebas
 
-if [ DEBUG ]; then
+if [ $DEBUG ]; then
 	touch $LOG
 	while true; do
 		clear
