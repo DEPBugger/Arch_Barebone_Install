@@ -177,13 +177,17 @@ function ConfDisk() {
 
 		DISK=`fdisk -l | grep "Disk /dev/sd" | wc -l` #Cantidad de discos en el equipo
 
-		if [ $DISK -eq 1 ]; then
+		if [ $DISK -eq 0 ]; then # En caso de no existir HDD
+			echo "ERROR GRAVE" && echo "Saliendo, no hay disco duro en el equipo" >> $LOG
+			echo "Pulsa INTRO para salir del instalador"
+			read input
+		elif [ $DISK -eq 1 ]; then # En caso de solo tener 1 HDD
 			echo "Solo tienes un disco duro, seleccionando /dev/sda como objetivo"
 			DISK="/dev/sda"
 			echo "Pulsa INTRO para continuar y entrar a cfdisk"
 			read input
 			cfdisk /dev/sda
-		else
+		else # En caso de tener más de 1 HDD
 			echo "En tu equipo tienes $DISK discos duros, son los siguientes:"
 			echo ""
 			fdisk -l | grep "Disk /dev/sd"
