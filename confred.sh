@@ -11,12 +11,20 @@ function ConfRed() {
 
 	echo "Para evitar problemas se recomienda el uso de una conexión cableada hacia internet"
 
-	# Función para configurar la red
+	# Función para comprobar la red
 	function correctRed() {
-
+		if $PING1 || $PING2 || $PING3; then
+			CORRECT_RED=true
+		fi
 	}
 
-	# Comprobar si la red es correcta
+	# Función para conectar la red
+	function configRed() {
+		echo "Intentando configurar la red"
+		# Intentar conectar por cable, si falla intentar conectar por wireless
+	}
+
+	# Comprobar si la red es correcta o volver a intentar
 	if $CORRECT_RED; then
 		break;
 	else
