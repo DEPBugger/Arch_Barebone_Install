@@ -6,6 +6,10 @@ USER=`whoami`
 DEBUG="false"
 LOG="/tmp/ArchInstall.log"
 
+function Preguntas() {
+
+}
+
 #TERMINADO y traducido (Solo falta rellenar información en los "echo" con advertencias de que algo puede fallar)
 #Function that gives information about the installation process
 function InfoHelp() {
@@ -276,6 +280,16 @@ function ToInstall() {
 	genfstab -U -p /mnt >> /mnt/etc/fstab 2>> $LOG && echo "Generado fstab" >> $LOG
 
 	#Comprobar que la copia se ha realizado correctamente
+	ls /mnt/tmp
+
+    #Nombre del host
+    echo "Introduce el nombre del host a instalar:"
+    echo ""
+    read myhost
+    echo $myhost > /etc/hostname && echo "El host ${myhost} ha sido añadido correctamente."
+
+    #Usuario principal
+
 }
 
 function PostInstall() {
