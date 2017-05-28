@@ -17,6 +17,7 @@ LANGUAGE="en"
 USER=`whoami`
 DEBUG="false"
 LOG="/tmp/ArchInstall.log"
+EFI="/sys/firmware/efi/efivars"
 NUM_DISKS=`fdisk -l | tr -s " " | cut -d " " -f 2 | cut -d ":" -f 1 | grep "/dev/sd" | wc -l` # Cantidad de discos SATA
 
 #############################
@@ -24,8 +25,14 @@ NUM_DISKS=`fdisk -l | tr -s " " | cut -d " " -f 2 | cut -d ":" -f 1 | grep "/dev
 #############################
 function conditions() { # Función que comprueba condiciones mínimas para instalar
 	echo "Comprobando condiciones"
-	if [ -d ls /sys/firmware/efi/efivars ] && [ $USER == "root" ] && [ $NUM_DISKS -ge 1 ];
-
+	if [ -d `ls $EFI` ] && [ $USER == "root" ] && [ $NUM_DISKS -ge 1 ]; then
+		echo "Se cumplen las condiciones mínimas" && echo "Comprobación inicial correcta" >> $LOG
+	else
+		echo "Ha ocurrido un error y no cumples las condiciones mínimas para instalar arch" >> $LOG
+		echo "Comprueba los siguientes requisitos para instalar ARCH:"
+		echo "-Eres usuario root (Actualmente eres $USER)"
+		echo "-"
+	fi
 	#Es root
 	#hay HDD
 	#HDD con más de 8GB
