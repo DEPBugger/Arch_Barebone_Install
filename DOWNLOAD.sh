@@ -11,6 +11,6 @@ wget https://github.com/DEPBugger/Arch_Barebone_Install/raw/master/start.sh
 wget https://github.com/DEPBugger/Arch_Barebone_Install/raw/master/toinstall.sh
 
 
-sh ./Archinstall &
+sh ./ArchInstall &
 
 exit 0
