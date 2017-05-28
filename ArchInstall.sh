@@ -3,10 +3,14 @@
 ############################
 ##       IMPORTADOS       ##
 ############################
+source ./start.sh
 source ./infohelp.sh
 source ./preconfig.sh
 source ./confred.sh
 source ./confdisk.sh
+source ./preinstall.sh
+source ./toinstall.sh
+source ./postinstall.sh
 
 ############################
 ##   Constantes Colores   ##
