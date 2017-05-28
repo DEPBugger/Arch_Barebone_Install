@@ -24,6 +24,7 @@ NUM_DISKS=`fdisk -l | tr -s " " | cut -d " " -f 2 | cut -d ":" -f 1 | grep "/dev
 ##        FUNCIONES        ##
 #############################
 function conditions() { # Función que comprueba condiciones mínimas para instalar
+	clear
 	echo "Comprobando condiciones"
 	if [ -d `ls $EFI` ] && [ $USER == "root" ] && [ $NUM_DISKS -ge 1 ]; then
 		echo "Se cumplen las condiciones mínimas" && echo "Comprobación inicial correcta" >> $LOG
@@ -31,10 +32,13 @@ function conditions() { # Función que comprueba condiciones mínimas para insta
 		echo "Ha ocurrido un error y no cumples las condiciones mínimas para instalar arch" >> $LOG
 		echo "Comprueba los siguientes requisitos para instalar ARCH:"
 		echo "-Eres usuario root (Actualmente eres $USER)"
-		echo "-"
+		echo "-Tienes disco duro con más de 8GB (Discos SATA detectados: $NUM_DISKS)"
+		echo ""
+		echo "Pulsa una tecla para salir del script"
+		read input
+		exit 1
 	fi
-	#Es root
-	#hay HDD
+	##### Falta por plantear si controlar:
 	#HDD con más de 8GB
 	#Enchufado si es portatil
 	#Red
@@ -92,6 +96,7 @@ if $DEBUG; then
 		esac
 	done
 else
+	conditions #Comprueba que se cumplen requisitos mínimos
 	InfoHelp
 	Start
 	PreConfig
