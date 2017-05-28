@@ -117,7 +117,7 @@ echo ''
 echo '########---Instalando reflector y actualizando la mirrorlist del sistema que se va a instalar para usar lor mirrors más rápidos---########'
 pacman -Syy reflector --noconfirm
 reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-pacman -Sy --noconfirm --needed yaourt xorg xorg-server xorg-xinit mesa mesa-demos xf86-video-vesa xf86-video-intel firefox terminator geany
+pacman -Sy --noconfirm --needed yaourt xorg xorg-server xorg-xinit mesa mesa-demos xf86-video-vesa xf86-video-intel firefox terminator geany gparted
 echo''
 echo 'Sistema gráfico básico instalado'
 # Preguntar si está instalando en VirtualBox
