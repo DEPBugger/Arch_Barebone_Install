@@ -266,17 +266,16 @@ function PreInstall() {
 	pacman -Syy reflector --noconfirm
 	reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 	#arch-chroot /mnt bash Test2.bash
+
+	#Comprobar que está bien montado
 }
 
 function ToInstall() {
-	#Comprobar que está bien montado
-
 	#Instalar
-	pacstrap /mnt base base-devel networkmanager net-tools
-	genfstab -U -p /mnt >> /mnt/etc/fstab
+	pacstrap /mnt base base-devel networkmanager net-tools 2>> $LOG && echo "Instalado base, base-devel, networkmanager, net-tools" >> $LOG
+	genfstab -U -p /mnt >> /mnt/etc/fstab 2>> $LOG && echo "Generado fstab" >> $LOG
 
 	#Comprobar que la copia se ha realizado correctamente
-	ls /mnt/tmp
 }
 
 function PostInstall() {
