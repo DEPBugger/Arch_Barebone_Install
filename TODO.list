@@ -1,6 +1,6 @@
 Add prompt and configuration about time zone and keyboard layouts: not done yet
 Create a goodlooking README.md: working (ask Despin)
-Add prompts about password and username on installation start (username by default is vbox): not done yet
+Add prompts about password on installation start: not done yet
 Add prompt that ask about which desktop environment do you wanna install (ask AntiAliasing for packages): not done yet
 Add prompt that ask abour which session manager do you wanna install (ask AntiAliasing for packages): not done yet
 Add a way to check if commands are executed correctly on scripts: not done yet
