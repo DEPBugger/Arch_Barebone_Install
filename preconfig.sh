@@ -24,16 +24,11 @@ function PreConfig() {
 			read LANGUAGE
 
 			case $LANGUAGE in
-				es|ES) LANGUAGE="es"
-						break;;
-				uk|UK) LANGUAGE="uk"
-						break;;
-				fr|FR) LANGUAGE="fr"
-						break;;
-				de|DE) LANGUAGE="de"
-						break;;
-				us|US) LANGUAGE="us"
-						break;;
+				es|ES) LANGUAGE="es"; KEYBOARD="es"; break;;
+				uk|UK) LANGUAGE="uk"; KEYBOARD="uk"; break;;
+				fr|FR) LANGUAGE="fr"; KEYBOARD="fr"; break;;
+				de|DE) LANGUAGE="de"; KEYBOARD="de"; break;;
+				us|US) LANGUAGE="us"; KEYBOARD="us"; break;;
 				*) echo "Invalid choice, write just es, uk, fr, de or us"
 					echo "Press Enter to continue"
 					read input;;
