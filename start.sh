@@ -39,7 +39,8 @@ function Preguntas() {
     read -s -p "Introduce la contraseña de tu usuario: " passuser
     echo
     echo "Vamos a empezar el particionado. Ejecutando cfdisk..."
-    cfdisk
+    cfdisk # Particionado manual
+    read -s "Introduce la GUI que desea instalar [XFCE/LXDE]: " gui
     
 }
 
@@ -48,7 +49,3 @@ function Archivo() {
 }
 
 Start
-echo $usuario
-echo $host
-echo $passroot
-echo $passuser
