@@ -7,7 +7,7 @@
 wget git.io/vHmpr && bash vHmpr
 ```
 - Files' names are provisional.
-- Here you can see what previous command do (video password: bash): https://vimeo.com/219239150
+- Here you can see what previous command do: https://vimeo.com/219315929
 - `ArchInstall.sh` file is being developed and aims to do the same as `Test0.bash` but improving what it already do.
 ```bash
 # ArchInstall.sh
@@ -22,7 +22,7 @@ wget git.io/vHcrZ && bash vHcrZ
 wget git.io/vHmpr && bash vHmpr
 ```
 - Los nombres de los archivos son provisionales.
-- En el siguiente link puedes ver qué hace el comando anterior (contraseña del vídeo: bash): https://vimeo.com/219239150
+- En el siguiente link puedes ver qué hace el comando anterior: https://vimeo.com/219315929
 - El archivo `ArchInstall.sh` está en desarrollo y aspira a optimizar y mejorar todo lo que hace `Test0.bash`:
 ```bash
 # ArchInstall.sh
