@@ -95,6 +95,7 @@ done
 genfstab -U /mnt >> /mnt/etc/fstab
 cat << EOF > /mnt/Test1.bash
 #!/bin/bash
+echo ''
 NEW_USER="${NEW_USER}"
 echo ''
 echo 'Se ha entrado en chroot'
@@ -149,7 +150,7 @@ Server = http://repo.archlinux.fr/$'arch'' >> /etc/pacman.conf
 echo ''
 echo 'Añadido repositorio para instalar yaourt (se eliminará más tarde)'
 echo ''
-echo '########---Instalando reflector y actualizando la mirrorlist del sistema que se va a instalar para usar lor mirrors más rápidos---########'
+echo '########---Instalando reflector y actualizando la mirrorlist del futuro sistema---########'
 echo ''
 pacman -Syy reflector --noconfirm
 reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
