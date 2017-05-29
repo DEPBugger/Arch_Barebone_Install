@@ -1,8 +1,18 @@
+usuario=""
+host=""
+efi=""
+boot=""
+root=""
+home=""
+gui=""
+passroot=""
+passuser=""
+
 function Start() {
     echo "Bienvenido al instalador de Arch Linux."    
     
     # Compruebo si existe un archivo de configuración.
-    FIND=$(find . -name arch.conf | wc -l) 
+    FIND=$(find . -name archq.conf | wc -l) 
     if [ $FIND -eq 1 ]
     then
         echo "Hemos detectado que tiene un archivo de configuración."
@@ -18,17 +28,19 @@ function Start() {
         Preguntas
     fi
 
-	read input
-
-    # En caso afirmativo vamos a tratar el archivo de configuración.
-	if [ "$input" == "Y" ] || [ "$input" == "y" ]
-    then
-        echo $input
-    fi
 }
 
+# Función que hace todas las preguntas necesarias para realizar la configuración.
 function Preguntas() {
-    echo "Preguntas"
+    read -p "Introduce el nombre de usuario: " usuario
+    read -p "Introduce el hostname: " host
+    read -s -p "Introduce la contraseña del usuario root: " passroot
+    echo
+    read -s -p "Introduce la contraseña de tu usuario: " passuser
+    echo
+    echo "Vamos a empezar el particionado. Ejecutando cfdisk..."
+    cfdisk
+    
 }
 
 function Archivo() {
@@ -36,3 +48,7 @@ function Archivo() {
 }
 
 Start
+echo $usuario
+echo $host
+echo $passroot
+echo $passuser
