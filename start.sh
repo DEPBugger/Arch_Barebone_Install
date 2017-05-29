@@ -20,7 +20,7 @@ function Start() {
 
 	read input
 
-    # En caso afirmativa vamos a tratar el archivo de configuración.
+    # En caso afirmativo vamos a tratar el archivo de configuración.
 	if [ "$input" == "Y" ] || [ "$input" == "y" ]
     then
         echo $input
