@@ -2,13 +2,8 @@
 # Este script es solo una prueba, y aunque no lo fuera lo usas bajo tu propio riesgo. No lo uses en tu ordenador real, pruébalo en una máquina virtual.
 # Pensado para computadoras de 64 bits
 setfont Lat2-Terminus16
-echo ''
-echo ''
-echo ''
-echo ''
-echo ''
-echo ''
-echo '
+clear
+cat << 'EOF'
                    -`                     Welcome to an awesome Arch install script
                   .o+`                    This script will install Arch Linux in a
                  `ooo/                    very comfortable way for you.
@@ -27,21 +22,22 @@ echo '
    `/ossssso+/:-        -:/+osssso+-
   `+sso+:-`                 `.-/+oso:
  `++:.                           `-/+/
- .`                                 `/    '
+ .`                                 `/
+EOF
 read -p 'Press Enter to begin installation process.'
 mount -o remount,size=2G /run/archiso/cowspace
 echo ''
 echo '/run/archiso/cowspace ampliada a 2GB'
-echo''
+echo ''
 dhcpcd
 timedatectl set-ntp true
-echo''
+echo ''
 ping -c 3 archlinux.org
 echo ''
 lsblk
 # ¿Continuar?
 echo ''
-read -p 'Ahora se particionará tu disco, pulsa Enter cuando estés list@'
+read -p 'Ahora se particionará tu disco (/dev/sda), pulsa Enter cuando estés list@'
 # Añadir espera tras el echo anterior
 # Añadir opción para eliminar la tabla de particiones
 gdisk << EOF
@@ -62,7 +58,7 @@ EOF
 echo ''
 echo 'Tabla de particiones lista. Ha quedado como se ve a continuación:'
 lsblk
-# ¿Es correcto?
+read -p 'Pulsa Enter para continuar'
 # Añadir opción para editar el /dev/sdXY de los mkfs
 echo ''
 mkfs.vfat -F32 /dev/sda1
