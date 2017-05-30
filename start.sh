@@ -49,11 +49,10 @@ function Preguntas() {
     read -p "Asigne el espacio que quiere asignar a la partición \"/home\" (si no desea una partición \"/home\" déjelo en blanco): " size_home
     read -p "Asigne el espacio que quiere asignar a la partición de intercambio (si no desea una partición de intercambio déjelo en blanco): " size_swap
     
-    #Declaro variables de particiones
-    
 
     # Crear particiones.
-    #CrearParticiones
+    CrearObligatorias
+    CrearOpcionales
 
 
     #cfdisk # Particionado manual
@@ -65,37 +64,69 @@ function Archivo() {
     echo "Archivo"
 }
 
-function CrearEfi() {
-    # Crea la partición de EFI.
+function CrearObligatorias() {
+    # Crea la partición de EFI y /.
     (
     echo n
     echo
     echo
-    echo 250M
+    echo +250M
     echo EF00
     echo n
     echo
     echo
-    echo $size_root
+    echo +$size_root
     echo 8300
     echo w
     echo Y
     ) | gdisk $dispositivo
 }
 
-function Crear
+function CrearOpcionales() {
+    # Si se ha asignado un valor a /home, creala.
+    if [ "$size_home" != "" ]
+    then
+        (
+        echo n
+        echo
+        echo
+        echo +$size_home
+        echo 8300
+        echo w
+        echo Y
+        ) | gdisk $dispositivo
+    fi
+    
+    # Lo mismo con boot.
+    if [ "$size_boot" != "" ]
+    then
+        (
+        echo n
+        echo
+        echo
+        echo +$size_boot
+        echo 8300
+        echo w
+        echo Y
+        ) | gdisk $dispositivo
+    fi
+
+    # Lo mismo con swap.
+    if [ "$size_swap" != "" ]
+    then
+        (
+        echo n
+        echo
+        echo
+        echo +$size_swap
+        echo 8200
+        echo w
+        echo Y
+        ) | gdisk $dispositivo
+    fi
+
+}
 
 
 Start
-echo $usuario
-echo $host
-echo $passroot
-echo $passuser
-echo $dispositivo
-echo $size_root
-echo $size_home
 
-if [ "$size_home" == "" ]
-then
-    echo "No home"
-fi
