@@ -3,7 +3,7 @@ host=""
 dispositivo=""
 efi=""
 boot=""
-root=""
+size_root=""
 home=""
 gui=""
 passroot=""
@@ -41,6 +41,10 @@ function Preguntas() {
     echo
     echo "Vamos a empezar el particionado guiado. ¡Prepárate para las preguntas!"
     read -p "Introduce el dispositivo (Ej. /dev/sda): " dispositivo
+    # Crear partición EFI
+    CrearEfi
+
+
     #cfdisk # Particionado manual
     read -p "Introduce la GUI que desea instalar [XFCE/KDE]: " gui
     
@@ -48,6 +52,24 @@ function Preguntas() {
 
 function Archivo() {
     echo "Archivo"
+}
+
+function CrearEfi() {
+echo -e "n\n1\n\n512M\nEF00\nn\n2\n\n8300\nw\nY" | gdisk $dispositivo
+gdisk << EOF
+$dispositivo
+n
+1
+
+512M
+EF00
+n
+2
+
+8300
+w
+Y
+EOF
 }
 
 Start
