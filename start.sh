@@ -1,5 +1,6 @@
 usuario=""
 host=""
+dispositivo=""
 efi=""
 boot=""
 root=""
@@ -38,9 +39,10 @@ function Preguntas() {
     echo
     read -s -p "Introduce la contraseña de tu usuario: " passuser
     echo
-    echo "Vamos a empezar el particionado. Ejecutando cfdisk..."
-    cfdisk # Particionado manual
-    read -s "Introduce la GUI que desea instalar [XFCE/LXDE]: " gui
+    echo "Vamos a empezar el particionado guiado. ¡Prepárate para las preguntas!"
+    read -p "Introduce el dispositivo (Ej. /dev/sda): " dispositivo
+    #cfdisk # Particionado manual
+    read -p "Introduce la GUI que desea instalar [XFCE/KDE]: " gui
     
 }
 
