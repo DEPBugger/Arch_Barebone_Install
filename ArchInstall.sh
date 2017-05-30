@@ -16,7 +16,7 @@ verde="\033[1;32m"
 USER=`whoami`
 DEBUG="false"
 LOG="/tmp/ArchInstall.log"
-EFI="/sys/firmware/efi/efivars" # Si existe, ha iniciado UEFI
+IS_EFI="/sys/firmware/efi/efivars" # Si existe, ha iniciado UEFI
 NUM_DISKS=`fdisk -l | tr -s " " | cut -d " " -f 2 | cut -d ":" -f 1 | grep "/dev/sd" | wc -l` # Cantidad de discos SATA
 
 #############################
@@ -43,7 +43,7 @@ SWAP=""
 function conditions() { # Función que comprueba condiciones mínimas para instalar
 	clear
 	echo "Comprobando condiciones"
-	if [ -d $EFI ] && [ $USER == "root" ] && [ $NUM_DISKS -ge 1 ]; then
+	if [ -d $IS_EFI ] && [ $USER == "root" ] && [ $NUM_DISKS -ge 1 ]; then
 		echo "Se cumplen las condiciones mínimas" && echo "Comprobación inicial correcta" >> $LOG
 	else
 		echo "Ha ocurrido un error y no cumples las condiciones mínimas para instalar arch" >> $LOG
