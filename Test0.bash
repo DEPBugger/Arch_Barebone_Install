@@ -1,7 +1,7 @@
 #!/bin/bash
 # Este script es solo una prueba, y aunque no lo fuera lo usas bajo tu propio riesgo. No lo uses en tu ordenador real, pruébalo en una máquina virtual.
 # Pensado para computadoras de 64 bits
-setfont Lat2-Terminus16
+# setfont Lat2-Terminus16
 clear
 echo -e '\e[1;36m
                    -`                     Welcome to an awesome Arch install script
@@ -188,7 +188,7 @@ sudo mv refind-theme-regular /boot/efi/EFI/BOOT
 echo ''
 echo -e '\e[1;32mColocada la carpeta refind-theme-regular en la ESP\e[0m'
 sudo rm -rf /boot/efi/EFI/BOOT/refind-theme-regular/{src,.git}
-sudo echo '
+sudo echo ''
 include refind-theme-regular/theme.conf' >> /boot/efi/EFI/BOOT/refind.conf
 echo -e '\e[1;32mCargado refind-theme-regular en refind.conf\e[0m'
 echo ''
