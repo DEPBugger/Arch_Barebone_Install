@@ -40,6 +40,14 @@ SWAP=""
 #############################
 ##        FUNCIONES        ##
 #############################
+function isUefi() { #Función que devuelve true si es UEFI
+	if [ -d $IS_EFI ]; then
+		return true
+	fi
+	return false
+}
+
+
 function conditions() { # Función que comprueba condiciones mínimas para instalar
 	clear
 	echo "Comprobando condiciones"
