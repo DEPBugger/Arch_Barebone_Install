@@ -2,9 +2,10 @@ usuario=""
 host=""
 dispositivo=""
 efi=""
-boot=""
+size_boot=""
 size_root=""
-home=""
+size_home=""
+size_swap=""
 gui=""
 passroot=""
 passuser=""
@@ -33,6 +34,7 @@ function Start() {
 
 # Función que hace todas las preguntas necesarias para realizar la configuración.
 function Preguntas() {
+    # No voy a comentar las preguntas, se explican ellas mismas :)
     read -p "Introduce el nombre de usuario: " usuario
     read -p "Introduce el hostname: " host
     read -s -p "Introduce la contraseña del usuario root: " passroot
@@ -40,9 +42,18 @@ function Preguntas() {
     read -s -p "Introduce la contraseña de tu usuario: " passuser
     echo
     echo "Vamos a empezar el particionado guiado. ¡Prepárate para las preguntas!"
+    read
     read -p "Introduce el dispositivo (Ej. /dev/sda): " dispositivo
-    # Crear partición EFI
-    CrearEfi
+    read -p "Asigne el espacio que quiere asignar a la partición \"/\": " size_root
+    read -p "Asigne el espacio que quiere asignar a la partición \"/boot\" (si no desea una partición \"/boot\" déjelo en blanco): " size_boot
+    read -p "Asigne el espacio que quiere asignar a la partición \"/home\" (si no desea una partición \"/home\" déjelo en blanco): " size_home
+    read -p "Asigne el espacio que quiere asignar a la partición de intercambio (si no desea una partición de intercambio déjelo en blanco): " size_swap
+    
+    #Declaro variables de particiones
+    
+
+    # Crear particiones.
+    #CrearParticiones
 
 
     #cfdisk # Particionado manual
@@ -55,21 +66,36 @@ function Archivo() {
 }
 
 function CrearEfi() {
-echo -e "n\n1\n\n512M\nEF00\nn\n2\n\n8300\nw\nY" | gdisk $dispositivo
-gdisk << EOF
-$dispositivo
-n
-1
-
-512M
-EF00
-n
-2
-
-8300
-w
-Y
-EOF
+    # Crea la partición de EFI.
+    (
+    echo n
+    echo
+    echo
+    echo 250M
+    echo EF00
+    echo n
+    echo
+    echo
+    echo $size_root
+    echo 8300
+    echo w
+    echo Y
+    ) | gdisk $dispositivo
 }
 
+function Crear
+
+
 Start
+echo $usuario
+echo $host
+echo $passroot
+echo $passuser
+echo $dispositivo
+echo $size_root
+echo $size_home
+
+if [ "$size_home" == "" ]
+then
+    echo "No home"
+fi
