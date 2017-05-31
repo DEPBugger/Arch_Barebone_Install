@@ -16,7 +16,8 @@ verde="\033[1;32m"
 USER=`whoami` #Variable con el usuario actual que ha ejecutado el script
 DEBUG=false #Modo debug por módulos, poner a true para depurar
 LOG="/tmp/ArchInstall.log" #Lugar y nombre del archivo LOG
-IS_EFI="/sys/firmware/efi/efivars" # Si existe, ha iniciado UEFI
+DIR_EFI="/sys/firmware/efi/efivars" #Directorio a comprobar para saber si ha iniciado EFI
+IS_EFI=false #Será true si ha iniciado con EFI
 NUM_DISKS=`fdisk -l | tr -s " " | cut -d " " -f 2 | cut -d ":" -f 1 | grep "/dev/sd" | wc -l` # Cantidad de discos SATA
 INTERNET=false #Variable que devuelve si hay internet --> función --> confred()
 
@@ -49,12 +50,14 @@ size_swap=""
 #############################
 ##        FUNCIONES        ##
 #############################
-function isUefi() { #Función que devuelve true si es UEFI
-	if [ -d $IS_EFI ]; then
-		return true
+function isEfi() { #Función que devuelve true si es EFI
+	if [ -d $DIR_EFI ]; then
+		IS_EFI=true
+	else
+		IS_EFI=false
 	fi
-	return false
 }
+isEfi #Ejecuta la función para comprobar si es EFI
 
 function conditions() { # Función que comprueba condiciones mínimas para instalar
 	clear
