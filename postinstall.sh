@@ -43,6 +43,12 @@ function PostInstall() {
 	InstallDesktop
 	MirrorList
 
+	#Añadir hostname
+	echo $host > /mnt/etc/hostname && echo "Host añadido a /mnt/etc/hostname" >> $LOG || echo "Error al agregar hostname" >> $LOG
+
+	#Añadir preferencia de localización
+	#echo "LANG=es_ES.UTF-8" >> /etc/locale.conf
+
 	#Al terminar el script preguntar si salir
 	while true; do
 		clear
