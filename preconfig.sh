@@ -1,6 +1,18 @@
 function PreConfig() {
 	clear
+
 	touch $LOG 2>> /dev/null # Creates log file
+
+	mount -o remount,size=2G /run/archiso/cowspace 2>> $LOG && echo "Live system memory (/run/archiso/cowspace) set to 2GB" >> $LOG
+	echo "Live system memory (/run/archiso/cowspace) set to 2GB"
+
+	echo "Instalando reflector y actualizando la mirrorlist del live para usar lor mirrors más rápidos"
+	pacman -Syy reflector --noconfirm && echo "reflector instalado correctamente" >> $LOG || echo "reflector no instalado" >> $LOG
+	reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && echo "Mirror más rápido elegido" >> $LOG
+
+
+
+
 
 	if [ ! -w $LOG ]; then #Checks that it is possible to write to the log file
 		echo "Error creating temporary file"
@@ -8,31 +20,7 @@ function PreConfig() {
 		exit 1
 	fi
 
-	#Pedir introducir el idioma de teclado
 	function selectKeyboard() {
-		while true; do
-			clear
-			echo "Select your keyboard layout"
-			# https://wiki.archlinux.org/index.php/Keyboard_configuration_in_console
-			echo "es for spanish keyboard"
-			echo "uk for United Kingdom english layout"
-			echo "fr for frech layout"
-			echo "de for deutsch layout"
-			echo "us for United States of America english layout"
-
-			read LANGUAGE
-
-			case $LANGUAGE in
-				es|ES) LANGUAGE="es"; KEYBOARD="es"; break;;
-				uk|UK) LANGUAGE="uk"; KEYBOARD="uk"; break;;
-				fr|FR) LANGUAGE="fr"; KEYBOARD="fr"; break;;
-				de|DE) LANGUAGE="de"; KEYBOARD="de"; break;;
-				us|US) LANGUAGE="us"; KEYBOARD="us"; break;;
-				*) echo "Invalid choice, write just es, uk, fr, de or us"
-					echo "Press Enter to continue"
-					read input;;
-			esac
-		done
 
 		# https://wiki.archlinux.org/index.php/Keyboard_configuration_in_console#Keymap_codes
 		##### Filtrar códigos disponibles para loadkeys --> `find /usr/share/kbd/keymaps/ -type f`
@@ -57,8 +45,5 @@ function PreConfig() {
 			*) echo "Invalid answer, please answer just y for yes or n for no [y/n]"
 		esac
 	done
-
-	mount -o remount,size=2G /run/archiso/cowspace 2>> $LOG && echo "Live system memory (/run/archiso/cowspace) set to 2GB" >> $LOG
-	echo "Live system memory (/run/archiso/cowspace) set to 2GB"
 }
 
