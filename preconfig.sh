@@ -1,4 +1,3 @@
-#### TERMINADO (Falta comprobar configuración de red)
 function PreConfig() {
 	clear
 	touch $LOG 2>> /dev/null # Creates log file

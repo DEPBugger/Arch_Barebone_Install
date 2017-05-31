@@ -47,14 +47,13 @@ function isUefi() { #Función que devuelve true si es UEFI
 	return false
 }
 
-
 function conditions() { # Función que comprueba condiciones mínimas para instalar
 	clear
 	echo "Comprobando condiciones"
 	if [ -d $IS_EFI ] && [ $USER == "root" ] && [ $NUM_DISKS -ge 1 ]; then
 		echo "Se cumplen las condiciones mínimas" && echo "Comprobación inicial correcta" >> $LOG
 	else
-		echo "Ha ocurrido un error y no cumples las condiciones mínimas para instalar arch" >> $LOG
+		echo "Ha ocurrido un error y no cumples las condiciones mínimas para instalar arch" && echo "No se cumplen las condiciones mínimas" >> $LOG
 		echo "Comprueba los siguientes requisitos para instalar ARCH:"
 		echo "-Eres usuario root (Actualmente eres $USER)"
 		echo "-Tienes disco duro con más de 8GB (Discos SATA detectados: $NUM_DISKS)"
