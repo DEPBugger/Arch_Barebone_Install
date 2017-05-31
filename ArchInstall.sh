@@ -13,11 +13,12 @@ verde="\033[1;32m"
 #############################
 ##   Variables Generales   ##
 #############################
-USER=`whoami`
-DEBUG="false"
-LOG="/tmp/ArchInstall.log"
+USER=`whoami` #Variable con el usuario actual que ha ejecutado el script
+DEBUG=false #Modo debug por módulos, poner a true para depurar
+LOG="/tmp/ArchInstall.log" #Lugar y nombre del archivo LOG
 IS_EFI="/sys/firmware/efi/efivars" # Si existe, ha iniciado UEFI
 NUM_DISKS=`fdisk -l | tr -s " " | cut -d " " -f 2 | cut -d ":" -f 1 | grep "/dev/sd" | wc -l` # Cantidad de discos SATA
+INTERNET=false #Variable que devuelve si hay internet --> función --> confred()
 
 #############################
 ## Variables Configuración ##
@@ -25,17 +26,27 @@ NUM_DISKS=`fdisk -l | tr -s " " | cut -d " " -f 2 | cut -d ":" -f 1 | grep "/dev
 LANGUAGE="en" #Variable con el idioma del sistema
 KEYBOARD="us" #Variable con el teclado a usar
 NEW_USER="user" #Nombre del nuevo usuario
-HOSTNAME="archPC"
+HOSTNAME="archPC" #Nombre de la máquina en red
 GPU="" # GPU para instalar Firmware/Drivers/Utilidades (En blanco para no hacer nada)
 GUI="" # Interfaz gráfica que se instalará (En blanco ninguna)
 SOFTWARE="" # Programas a instalar automáticamente
 
 # Punto de montaje para cada partición
 EFI=""
+EFI_SIZE=""
+EFI_FORMAT=""
 BOOT=""
+BOOT_SIZE=""
+BOOT_FORMAT=""
 ROOT=""
+ROOT_SIZE=""
+ROOT_FORMAT=""
 HOME=""
+HOME_SIZE=""
+HOME_FORMAT=""
 SWAP=""
+SWAP_SIZE=""
+SWAP_FORMAT=""
 
 #############################
 ##        FUNCIONES        ##
