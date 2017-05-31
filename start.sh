@@ -59,7 +59,7 @@ function Preguntas() {
     fi
 
     # Crear particiones.
-    CrearObligatorias
+    CrearRoot
     CrearOpcionales
 
     read -p "Introduce la GUI que desea instalar [XFCE/KDE]: " gui
@@ -81,6 +81,9 @@ function CrearEfi() {
     echo w
     echo Y
     ) | gdisk $dispositivo
+    
+    # Muestro las particiones 
+    gdisk $dispositivo -l | tail -n 1 > efi.txt
 
 }
 
@@ -95,6 +98,8 @@ function CrearRoot() {
     echo w
     echo Y
     ) | gdisk $dispositivo
+
+    gdisk $dispositivo -l | tail -n 1 > root.txt
 }
 
 function CrearOpcionales() {
@@ -110,6 +115,8 @@ function CrearOpcionales() {
         echo w
         echo Y
         ) | gdisk $dispositivo
+
+        gdisk $dispositivo -l | tail -n 1 > home.txt
     fi
     
     # Lo mismo con boot.
@@ -124,6 +131,8 @@ function CrearOpcionales() {
         echo w
         echo Y
         ) | gdisk $dispositivo
+
+        gdisk $dispositivo -l | tail -n 1 > boot.txt
     fi
 
     # Lo mismo con swap.
@@ -138,6 +147,8 @@ function CrearOpcionales() {
         echo w
         echo Y
         ) | gdisk $dispositivo
+
+        gdisk $dispositivo -l | tail -n 1 > swap.txt
     fi
 
 }
