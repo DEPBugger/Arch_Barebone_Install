@@ -2,6 +2,7 @@ usuario=""
 host=""
 dispositivo=""
 efi=""
+size_efi=""
 size_boot=""
 size_root=""
 size_home=""
@@ -44,18 +45,23 @@ function Preguntas() {
     echo "Vamos a empezar el particionado guiado. ¡Prepárate para las preguntas!"
     read
     read -p "Introduce el dispositivo (Ej. /dev/sda): " dispositivo
+    read -p "Indique la partición EFI si ya tiene una (Ej. /dev/sda1) o asigne el espacio deseado para crear una nueva (Recomendado: 512M): " efi
     read -p "Asigne el espacio que quiere asignar a la partición \"/\": " size_root
     read -p "Asigne el espacio que quiere asignar a la partición \"/boot\" (si no desea una partición \"/boot\" déjelo en blanco): " size_boot
     read -p "Asigne el espacio que quiere asignar a la partición \"/home\" (si no desea una partición \"/home\" déjelo en blanco): " size_home
     read -p "Asigne el espacio que quiere asignar a la partición de intercambio (si no desea una partición de intercambio déjelo en blanco): " size_swap
     
+    # Si nos ha dado una partición seguimos avanzando, si nos ha dado un tamaño creamos la partición.
+    if [ "${efi:0:1}" != "/" ]
+    then
+        size_efi = $efi
+        CrearEfi
+    fi
 
     # Crear particiones.
     CrearObligatorias
     CrearOpcionales
 
-
-    #cfdisk # Particionado manual
     read -p "Introduce la GUI que desea instalar [XFCE/KDE]: " gui
     
 }
@@ -64,14 +70,23 @@ function Archivo() {
     echo "Archivo"
 }
 
-function CrearObligatorias() {
-    # Crea la partición de EFI y /.
+function CrearEfi() {
+    # Crea la partición de EFI.
     (
     echo n
     echo
     echo
-    echo +250M
+    echo +$size_efi
     echo EF00
+    echo w
+    echo Y
+    ) | gdisk $dispositivo
+
+}
+
+function CrearRoot() {
+    # Crea la partición /.
+    (
     echo n
     echo
     echo
