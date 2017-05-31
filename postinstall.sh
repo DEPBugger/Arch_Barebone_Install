@@ -48,6 +48,14 @@ function PostInstall() {
 
 	#Añadir preferencia de localización
 	#echo "LANG=es_ES.UTF-8" >> /etc/locale.conf
+	#locale-gen
+
+	#Crear usuario, falta hacer que se ejecute dentro de archroot:
+	#useradd -m -g $new_user -G audio,lp,optical,storage,video,wheel,games,power,scanner -s /bin/bash $new_user
+
+	#Contraseña de usuario
+
+	#Contraseña de root
 
 	#Al terminar el script preguntar si salir
 	while true; do
