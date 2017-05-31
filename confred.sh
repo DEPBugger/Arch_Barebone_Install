@@ -5,7 +5,6 @@ function ConfRed() {
 	PING1=""
 	PING2=""
 	PING3=""
-	CORRECT_RED="false"
 
 	echo "Para evitar problemas se recomienda el uso de una conexión cableada hacia internet"
 
@@ -25,7 +24,7 @@ function ConfRed() {
 
 		if $PING1 || $PING2 || $PING3; then
 			echo "Hay conexión a internet" && echo "Conexión a internet correcta" >> $LOG
-			CORRECT_RED=true
+			INTERNET=true
 		else
 			echo "Han fallado 3 pings consecutivos" && echo "Han fallado 3 pings consecutivos" >> $LOG
 			configRed
@@ -33,7 +32,7 @@ function ConfRed() {
 	}
 
 	# Comprobar si la red es correcta o volver a intentar
-	if $CORRECT_RED; then
+	if $INTERNET; then
 		break;
 	else
 		correctRed
