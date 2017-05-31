@@ -9,7 +9,4 @@ function ConfDisk() {
 	echo "Particionando discos duros y formateando..."
 	sleep 1s
 	clear
-
 }
-
-

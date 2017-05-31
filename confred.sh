@@ -12,7 +12,6 @@ function ConfRed() {
 		# Función para conectar la red
 	function configRed() {
 		echo "Intentando configurar la red"
-		# Intentar conectar por cable, si falla intentar conectar por wireless
 		echo ""
 		echo "Activando Cliente DHCP" && echo "Activando Cliente DHCP" >> $LOG
 		dhcpcd 2>> $LOG && echo "El comando dhcpcd ha funcionado correctamente" >> $LOG

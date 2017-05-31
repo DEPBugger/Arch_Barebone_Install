@@ -22,9 +22,9 @@ NUM_DISKS=`fdisk -l | tr -s " " | cut -d " " -f 2 | cut -d ":" -f 1 | grep "/dev
 #############################
 ## Variables Configuración ##
 #############################
-LANGUAGE="en"
-KEYBOARD=""
-NEW_USER="user"
+LANGUAGE="en" #Variable con el idioma del sistema
+KEYBOARD="us" #Variable con el teclado a usar
+NEW_USER="user" #Nombre del nuevo usuario
 HOSTNAME="archPC"
 GPU="" # GPU para instalar Firmware/Drivers/Utilidades (En blanco para no hacer nada)
 GUI="" # Interfaz gráfica que se instalará (En blanco ninguna)
