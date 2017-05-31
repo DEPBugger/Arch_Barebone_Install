@@ -54,7 +54,7 @@ function Preguntas() {
     # Si nos ha dado una partición seguimos avanzando, si nos ha dado un tamaño creamos la partición.
     if [ "${efi:0:1}" != "/" ]
     then
-        size_efi = $efi
+        size_efi=$efi
         CrearEfi
     fi
 
