@@ -1,10 +1,7 @@
 
 function PostInstall() {
-	echo "Instalando reflector y actualizando la mirrorlist del live para usar lor mirrors más rápidos"
-	pacman -Syy reflector --noconfirm && echo "reflector instalado correctamente" >> $LOG || echo "reflector no instalado" >> $LOG
-	reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && echo "Mirror más rápido elegido" >> $LOG
-
-	function MyDesktop() {
+	#Función para instalar escritorios
+	function InstallDesktop() {
 		case $gui in
 			xfce|Xfce|XFCE)
 				echo "Instalando XFCE"
@@ -30,6 +27,18 @@ function PostInstall() {
 				sleep 6s
 	}
 
+	#Función para seleccionar mirror
+	function MirrorList() {
+		echo "Instalando reflector y actualizando la mirrorlist del live para usar lor mirrors más rápidos"
+		pacman -Syy reflector --noconfirm && echo "reflector instalado correctamente" >> $LOG || echo "reflector no instalado" >> $LOG
+		reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && echo "Mirror más rápido elegido" >> $LOG
+	}
+
+	#Llamada a las configuraciones
+	InstallDesktop
+	MirrorList
+
+	#Al terminar el script preguntar si salir
 	while true; do
 		clear
 		echo "Se ha terminado de instalar, ¿desea apagar el equipo?"
