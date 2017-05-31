@@ -20,6 +20,7 @@ DIR_EFI="/sys/firmware/efi/efivars" #Directorio a comprobar para saber si ha ini
 IS_EFI=false #Será true si ha iniciado con EFI
 NUM_DISKS=`fdisk -l | tr -s " " | cut -d " " -f 2 | cut -d ":" -f 1 | grep "/dev/sd" | wc -l` # Cantidad de discos SATA
 INTERNET=false #Variable que devuelve si hay internet --> función --> confred()
+TMP="" #Variable temporal
 
 #############################
 ## Variables Configuración ##
@@ -59,7 +60,7 @@ function isEfi() { #Función que devuelve true si es EFI
 }
 isEfi #Ejecuta la función para comprobar si es EFI
 
-function conditions() { # Función que comprueba condiciones mínimas para instalar
+function conditions() { #Función que comprueba condiciones mínimas para instalar
 	clear
 	echo "Comprobando condiciones"
 	if [ -d $IS_EFI ] && [ $USER == "root" ] && [ $NUM_DISKS -ge 1 ]; then
@@ -131,14 +132,14 @@ if $DEBUG; then
 	done
 else
 	conditions #Comprueba que se cumplen requisitos mínimos
-	InfoHelp
-	Start
-	PreConfig
-	ConfRed
-	ConfDisk
-	PreInstall
-	ToInstall
-	PostInstall
+	InfoHelp #Informa de los riesgos que puede conllevar este instalador
+	Start #Inicio, comprueba si existe archivo de configuración, en caso contrario pide introducir datos
+	PreConfig #Preconfiguraciones antes de empezar particionado e instalación
+	ConfRed #Configura la red y comprueba que hay conexión
+	ConfDisk #Configura, particiona y formatea el/los discos duros
+	PreInstall #Prepara configuraciones para instalar
+	ToInstall #Instala el sistema
+	PostInstall #Configuraciones después de instalar el sistema
 fi
 
 exit 0
