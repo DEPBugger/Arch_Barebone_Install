@@ -34,6 +34,11 @@ function PostInstall() {
 		reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist && echo "Mirror más rápido elegido" >> $LOG
 	}
 
+	function CreateFstab() {
+		echo "Generando fstab"
+		genfstab -U -p /mnt >> /mnt/etc/fstab && echo "fstab generado correctamente" >> $LOG || echo "Error al generar fstab" >> $LOG
+	}
+
 	#Llamada a las configuraciones
 	InstallDesktop
 	MirrorList
