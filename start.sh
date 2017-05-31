@@ -1,4 +1,4 @@
-usuario=""
+new_user=""
 host=""
 dispositivo=""
 efi=""
@@ -14,6 +14,7 @@ size_swap=""
 gui=""
 passroot=""
 passuser=""
+
 
 function Start() {
     echo "Bienvenido al instalador de Arch Linux."    
@@ -40,7 +41,7 @@ function Start() {
 # Función que hace todas las preguntas necesarias para realizar la configuración.
 function Preguntas() {
     # No voy a comentar las preguntas, se explican ellas mismas :)
-    read -p "Introduce el nombre de usuario: " usuario
+    read -p "Introduce el nombre de usuario: " new_user
     read -p "Introduce el hostname: " host
     read -s -p "Introduce la contraseña del usuario root: " passroot
     echo
@@ -87,7 +88,8 @@ function CrearEfi() {
     ) | gdisk $dispositivo
     
     # Muestro las particiones 
-    gdisk $dispositivo -l | tail -n 1 > efi.txt
+    efi=$(gdisk $dispositivo -l | tail -n 1)
+    efi="$dispositivo${efi:3:3}"
 
 }
 
@@ -103,7 +105,9 @@ function CrearRoot() {
     echo Y
     ) | gdisk $dispositivo
 
-    gdisk $dispositivo -l | tail -n 1 > root.txt
+    # Muestro las particiones 
+    root=$(gdisk $dispositivo -l | tail -n 1)
+    root="$dispositivo${root:3:3}"
 }
 
 function CrearOpcionales() {
@@ -120,7 +124,9 @@ function CrearOpcionales() {
         echo Y
         ) | gdisk $dispositivo
 
-        gdisk $dispositivo -l | tail -n 1 > home.txt
+        # Muestro las particiones 
+        home=$(gdisk $dispositivo -l | tail -n 1)
+        home="$dispositivo${home:3:3}"
     fi
     
     # Lo mismo con boot.
@@ -136,7 +142,9 @@ function CrearOpcionales() {
         echo Y
         ) | gdisk $dispositivo
 
-        gdisk $dispositivo -l | tail -n 1 > boot.txt
+        # Muestro las particiones 
+        boot=$(gdisk $dispositivo -l | tail -n 1)
+        boot="$dispositivo${boot:3:3}"
     fi
 
     # Lo mismo con swap.
@@ -152,7 +160,9 @@ function CrearOpcionales() {
         echo Y
         ) | gdisk $dispositivo
 
-        gdisk $dispositivo -l | tail -n 1 > swap.txt
+        # Muestro las particiones 
+        swap=$(gdisk $dispositivo -l | tail -n 1)
+        swap="$dispositivo${swap:3:3}"
     fi
 
 }
