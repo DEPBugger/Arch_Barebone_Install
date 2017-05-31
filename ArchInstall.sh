@@ -25,28 +25,26 @@ INTERNET=false #Variable que devuelve si hay internet --> función --> confred()
 #############################
 LANGUAGE="en" #Variable con el idioma del sistema
 KEYBOARD="us" #Variable con el teclado a usar
-NEW_USER="user" #Nombre del nuevo usuario
-HOSTNAME="archPC" #Nombre de la máquina en red
-GPU="" # GPU para instalar Firmware/Drivers/Utilidades (En blanco para no hacer nada)
-GUI="" # Interfaz gráfica que se instalará (En blanco ninguna)
+new_user="user" #Nombre del nuevo usuario
+passroot=""
+passuser=""
+host="archPC" #Nombre de la máquina en red
+dispositivo=""
+gpu="" # GPU para instalar Firmware/Drivers/Utilidades (En blanco para no hacer nada)
+gui="" # Interfaz gráfica que se instalará (En blanco ninguna)
 SOFTWARE="" # Programas a instalar automáticamente
 
 # Punto de montaje para cada partición
-EFI=""
-EFI_SIZE=""
-EFI_FORMAT=""
-BOOT=""
-BOOT_SIZE=""
-BOOT_FORMAT=""
-ROOT=""
-ROOT_SIZE=""
-ROOT_FORMAT=""
-HOME=""
-HOME_SIZE=""
-HOME_FORMAT=""
-SWAP=""
-SWAP_SIZE=""
-SWAP_FORMAT=""
+efi=""
+boot=""
+root=""
+home=""
+swap=""
+size_efi=""
+size_boot=""
+size_root=""
+size_home=""
+size_swap=""
 
 #############################
 ##        FUNCIONES        ##
