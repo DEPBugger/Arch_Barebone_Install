@@ -83,7 +83,7 @@ echo ''
 echo -e '\e[1;32m########---Instalando reflector y actualizando la mirrorlist del live para usar lor mirrors más rápidos---########\e[0m'
 pacman -Syy reflector --noconfirm
 reflector --latest 12 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
-pacstrap /mnt base base-devel networkmanager net-tools
+pacstrap /mnt base base-devel networkmanager iproute2
 while [[ -z ${NEW_USER} ]]; do
     echo ''
     read -p $'\033[1;31mIntroduzca el nombre del usuario no root que desee para su futuro sistema:\e[0m' NEW_USER
