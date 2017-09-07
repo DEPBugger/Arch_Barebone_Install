@@ -97,7 +97,7 @@ while [[ -z ${NEW_USER} ]]; do
     fi
 done
 echo ''
-genfstab -U /mnt >> /mnt/etc/fstab
+genfstab -U -p /mnt >> /mnt/etc/fstab
 echo ''
 cat << EOF > /mnt/Test1.bash
 #!/bin/bash
